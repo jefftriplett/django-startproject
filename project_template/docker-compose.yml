@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+  web:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    command: bash -c "pipenv run python manage.py migrate --noinput && pipenv run python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/code
+      - virtualenv_data:/root/.local/share/virtualenvs/
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgres://postgres@db/postgres
+      - DEBUG=1
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
+  virtualenv_data:
