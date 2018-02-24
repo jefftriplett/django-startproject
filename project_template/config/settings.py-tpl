@@ -108,7 +108,7 @@ INSTALLED_APPS = [
 # https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/#databases
 
 DATABASES = {
-    'default': env.db(default='sqlite:///{0}'.format(BASE_DIR.joinpath('db.sqlite3')))
+    'default': env.db('DATABASE_URL', default='postgres://postgres@db/postgres'),
 }
 
 ##################
