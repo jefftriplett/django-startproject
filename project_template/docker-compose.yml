@@ -10,17 +10,20 @@ services:
       context: .
       dockerfile: ./Dockerfile
     command: bash -c "pipenv run python manage.py migrate --noinput && pipenv run python manage.py runserver 0.0.0.0:8000"
-    volumes:
-      - .:/code
-      - virtualenv_data:/root/.local/share/virtualenvs/
-    ports:
-      - "8000:8000"
-    environment:
-      - DATABASE_URL=postgres://postgres@db/postgres
-      - DEBUG=1
     depends_on:
       - db
+    environment:
+      - ALLOWED_HOSTS=*
+      - DATABASE_URL=postgres://postgres@db/postgres
+      - DEBUG=on
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/code
+      # - node_modules:/code/node_modules
+      - virtualenv_data:/root/.local/share/virtualenvs/
 
 volumes:
+  # node_modules:
   postgres_data:
   virtualenv_data:
