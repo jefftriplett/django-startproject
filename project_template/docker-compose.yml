@@ -19,7 +19,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - .:/code
+      - .:/code  # comment out to enable .dockerignore
       # - node_modules:/code/node_modules
       - virtualenv_data:/root/.local/share/virtualenvs/
 
