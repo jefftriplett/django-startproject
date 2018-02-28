@@ -1,4 +1,4 @@
-version: '3'
+version: '3.4'
 
 services:
   db:
@@ -8,7 +8,9 @@ services:
   web:
     build:
       context: .
-      dockerfile: ./Dockerfile
+      # dockerfile: ./Dockerfile
+      target: test
+    # container_name: {{ project_name }}-app
     command: bash -c "pipenv run python manage.py migrate --noinput && pipenv run python manage.py runserver 0.0.0.0:8000"
     depends_on:
       - db
