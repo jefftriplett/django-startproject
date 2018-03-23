@@ -104,11 +104,21 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
+# Third-party apps
+
+INSTALLED_APPS += [
+]
+
+# Our apps
+
+INSTALLED_APPS += [
+]
+
 # Database
 # https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/#databases
 
 DATABASES = {
-    'default': env.db('DATABASE_URL', default='postgres://postgres@db/postgres'),
+    'default': env.db('DATABASE_URL', default='postgres:///{{ project_name }}'),
 }
 
 ##################
