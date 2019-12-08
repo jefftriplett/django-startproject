@@ -3,6 +3,7 @@ django~=3.0.0
 environs[django]
 psycopg2-binary
 
+black
 django-test-plus
 ipdb
 model_bakery
@@ -10,4 +11,3 @@ pytest
 pytest-cov
 pytest-django
 pytest-sugar
-pytest-xdist
