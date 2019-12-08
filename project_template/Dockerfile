@@ -14,12 +14,10 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 RUN set -ex \
-    && pip install pipenv \
+    && pip install --upgrade pip \
     && rm -rf /root/.cache/
 
 WORKDIR /code
-
-COPY Pipfile Pipfile.lock /code/
 
 COPY --from=tini /usr/local/bin/tini /usr/local/bin/tini
 
@@ -31,23 +29,27 @@ ENTRYPOINT ["/usr/local/bin/tini", "--"]
 
 FROM base AS dependencies
 
+COPY requirements.txt /code/
+
 RUN set -ex \
-    && pipenv install --deploy \
+    && pip install -r requirements.txt \
     && rm -rf /root/.cache/
 
 # ------------------------------------------------------------
 # Testing layer
 # ------------------------------------------------------------
 
-FROM dependencies AS test
+# FROM dependencies AS test
 
-RUN set -ex \
-    && pipenv install --deploy --dev \
-    && rm -rf /root/.cache/
+# COPY requirements-dev.txt /code/
 
-COPY . /code/
+# RUN set -ex \
+#     && pip install -r requirements-dev.txt \
+#     && rm -rf /root/.cache/
 
-RUN pipenv run py.test
+# COPY . /code/
+
+# RUN pytest
 
 # ------------------------------------------------------------
 # Release / Production layer
@@ -59,4 +61,4 @@ COPY . /code/
 
 EXPOSE 8000
 
-CMD ["pipenv", "run", "python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

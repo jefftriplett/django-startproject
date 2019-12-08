@@ -1,0 +1,13 @@
+django-click
+django-environ
+django~=3.0.0
+psycopg2-binary
+
+django-test-plus
+ipdb
+model_bakery
+pytest
+pytest-cov
+pytest-django
+pytest-sugar
+pytest-xdist

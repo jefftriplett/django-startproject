@@ -8,10 +8,10 @@ services:
   web:
     build:
       context: .
-      # dockerfile: ./Dockerfile
-      target: test
+      dockerfile: ./Dockerfile
+      target: release
     # container_name: {{ project_name }}-app
-    command: bash -c "pipenv run python manage.py migrate --noinput && pipenv run python manage.py runserver 0.0.0.0:8000"
+    command: python manage.py runserver 0.0.0.0:8000
     depends_on:
       - db
     environment:
@@ -21,11 +21,11 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      # - .:/code  # comment out to enable .dockerignore
+      - .:/code  # comment out to enable .dockerignore
       # - node_modules:/code/node_modules
-      - virtualenv_data:/root/.local/share/virtualenvs/
+      # - virtualenv_data:/root/.local/share/virtualenvs/
 
 volumes:
   # node_modules:
+  # virtualenv_data:
   postgres_data:
-  virtualenv_data:
