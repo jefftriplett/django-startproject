@@ -10,17 +10,14 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/
 """
 
-import environ
+import environs
 
 from pathlib import Path
 
 
-env = environ.Env()
+env = environs.Env()
 
-root = environ.Path(__file__) - 2
-
-# Build paths inside the project like this: BASE_DIR.joinpath('')
-BASE_DIR = Path(root())
+BASE_DIR = environs.Path(__file__).parent.parent
 
 ####################
 # CORE             #
@@ -53,7 +50,7 @@ USE_TZ = True
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 else:
-    EMAIL_CONFIG = env.email_url('EMAIL_URL', default='smtp://user@:password@localhost:25')
+    EMAIL_CONFIG = envdj_.email_url('EMAIL_URL', default='smtp://user@:password@localhost:25')
     # vars().update(EMAIL_CONFIG)
 
 ROOT_URLCONF = 'config.urls'
@@ -118,7 +115,7 @@ INSTALLED_APPS += [
 # https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/#databases
 
 DATABASES = {
-    'default': env.db('DATABASE_URL', default='postgres:///{{ project_name }}'),
+    'default': env.dj_db_url('DATABASE_URL', default='postgres:///{{ project_name }}'),
 }
 
 ##################
@@ -163,6 +160,6 @@ MEDIA_ROOT = str(BASE_DIR.joinpath('media'))
 # OUR SETTINGS #
 ################
 
-ADMIN_URL = r'^admin/'
+ADMIN_URL = env('ADMIN_URL', default='^admin/')
 
 SITE_ID = 1

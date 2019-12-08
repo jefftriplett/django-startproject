@@ -1,6 +1,6 @@
 django-click
-django-environ
 django~=3.0.0
+environs[django]
 psycopg2-binary
 
 django-test-plus
