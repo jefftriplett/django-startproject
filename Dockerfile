@@ -39,22 +39,6 @@ RUN set -ex \
     && rm -rf /root/.cache/
 
 # ------------------------------------------------------------
-# Testing layer
-# ------------------------------------------------------------
-
-# FROM dependencies AS test
-
-# COPY requirements-dev.txt /code/
-
-# RUN set -ex \
-#     && pip install -r requirements-dev.txt \
-#     && rm -rf /root/.cache/
-
-# COPY . /code/
-
-# RUN pytest
-
-# ------------------------------------------------------------
 # Release / Production layer
 # ------------------------------------------------------------
 

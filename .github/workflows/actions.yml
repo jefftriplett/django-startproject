@@ -30,6 +30,7 @@ jobs:
         env:
           DATABASE_URL: 'postgres://postgres:postgres@localhost:${{ job.services.postgres.ports[5432] }}/postgres'
         run: |
+          cd /tmp/
           django-admin startproject \
               --extension=ini,py,yml \
               --template=. \
@@ -37,13 +38,13 @@ jobs:
 
       - name: Docker - Build image from starter project
         run: |
-          cd test_project
+          cd /tmp/test_project
           docker-compose pull
           docker-compose build
 
       - name: Docker - Test generated starter project
         run: |
+          cd /tmp/test_project
           ls -la
-          cd test_project
           find .
           docker-compose run --rm web pytest
