@@ -13,4 +13,3 @@ pytest
 pytest-black
 pytest-cov
 pytest-django
-pytest-sugar
