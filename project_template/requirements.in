@@ -4,7 +4,7 @@ environs[django]
 psycopg2-binary
 whitenoise
 
-black
+black==19.3b0
 django-test-plus
 ipdb
 model-bakery
