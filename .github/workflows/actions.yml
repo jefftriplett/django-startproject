@@ -32,7 +32,7 @@ jobs:
           cd test_project
           django-admin startproject \
               --extension=ini,py,yml \
-              --template=. \
+              --template=.. \
               test_project
 
       - name: Docker - Build image from starter project
