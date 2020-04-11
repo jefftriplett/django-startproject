@@ -43,5 +43,5 @@ jobs:
         run: |
           cd test_project
           ls -la
-          find .
-          docker-compose run --rm web pytest
+          cd test_project && docker-compose run --rm web pytest
+          git status
