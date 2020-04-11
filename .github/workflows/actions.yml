@@ -26,9 +26,7 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install "django~=3.0.0"
 
-      - name: Collect Static Assets
-        env:
-          DATABASE_URL: 'postgres://postgres:postgres@localhost:${{ job.services.postgres.ports[5432] }}/postgres'
+      - name: Create a project based on our settings
         run: |
           cd /tmp/
           django-admin startproject \
