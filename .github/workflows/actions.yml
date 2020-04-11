@@ -43,5 +43,7 @@ jobs:
 
       - name: Docker - Test generated starter project
         run: |
+          ls -la
           cd test_project
+          find .
           docker-compose run --rm web pytest
