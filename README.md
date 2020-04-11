@@ -58,6 +58,12 @@ $ docker-compose run --rm web python manage.py createsuperuser
 # Run Django on http://localhost:8000/
 $ docker-compose up
 
+# Run Django in background mode
+$ docker-compose up -d
+
+# Stop all running containers
+$ docker-compose down
+
 # Run Tests
 $ docker-compose run --rm web pytest
 
