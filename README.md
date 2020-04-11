@@ -8,19 +8,29 @@
   </a>
 </p>
 
-> Bare bones Django startproject template
+> Django startproject template with batteries
 
 ## Features
 
 - Django 3.0.x
 - django-click
-- django-environ
 - Docker
 - Docker Compose
-- pip-tools
+- environs[django]
 - psycopg2-binary
+- whitenoise
+
+### CI
+
 - black
+- django-test-plus
+- ipdb
+- model-bakery
+- pip-tools
 - pytest
+- pytest-black
+- pytest-cov
+- pytest-django
 
 ### 🏠 [Homepage](https://github.com/jefftriplett/django-startproject)
 
@@ -36,10 +46,23 @@ $ django-admin startproject \
 ## Usage
 
 ```shell
+# Build our Docker Image
 $ docker-compose build
+
+# Run Migrations
 $ docker-compose run --rm web python manage.py migrate
+
+# Create a Superuser in Django
 $ docker-compose run --rm web python manage.py createsuperuser
-$ docker-compose up --rm
+
+# Run Django on http://localhost:8000/
+$ docker-compose up
+
+# Run Tests
+$ docker-compose run --rm web pytest
+
+# Re-build PIP requirements
+$ docker-compose run --rm web pip-compile requirements/requirements.in
 ```
 
 ## Author
