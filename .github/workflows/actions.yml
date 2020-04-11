@@ -43,9 +43,13 @@ jobs:
               --template=./project_template \
               test_project
 
-      - name: Docker - Build & Ttst
+      - name: Docker - Build image from starter project
         run: |
           cd test_project
           docker-compose pull
           docker-compose build
+
+      - name: Docker - Test generated starter project
+        run: |
+          cd test_project
           docker-compose run --rm web pytest
