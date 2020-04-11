@@ -1,0 +1,16 @@
+django-click
+django~=3.0.0
+environs[django]
+psycopg2-binary
+whitenoise
+
+black
+django-test-plus
+ipdb
+model-bakery
+pip-tools
+pytest
+pytest-black
+pytest-cov
+pytest-django
+pytest-sugar
