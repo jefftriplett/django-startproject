@@ -40,5 +40,8 @@ jobs:
 
       - name: Docker - Test generated starter project
         run: |
+          pwd
+          cd test_project
+          pwd
           cd test_project && docker-compose run --rm web pytest
           git status
