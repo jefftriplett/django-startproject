@@ -35,13 +35,10 @@ jobs:
 
       - name: Docker - Build image from starter project
         run: |
-          cd test_project
-          docker-compose pull
-          docker-compose build
+          cd test_project && docker-compose pull
+          cd test_project && docker-compose build
 
       - name: Docker - Test generated starter project
         run: |
-          cd test_project
-          ls -la
           cd test_project && docker-compose run --rm web pytest
           git status
