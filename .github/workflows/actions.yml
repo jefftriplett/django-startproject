@@ -28,12 +28,10 @@ jobs:
 
       - name: Create a project based on our settings
         run: |
-          mkdir test_project
-          cd test_project
           django-admin startproject \
               --extension=ini,py,yml \
-              --template=.. \
-              test_project
+              --template=. \
+              test_project .
 
       - name: Docker - Build image from starter project
         run: |
