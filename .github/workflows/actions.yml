@@ -31,7 +31,7 @@ jobs:
           django-admin startproject \
               --extension=ini,py,yml \
               --template=. \
-              test_project .
+              test_project
 
       - name: Docker - Build image from starter project
         run: |
