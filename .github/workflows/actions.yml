@@ -28,7 +28,8 @@ jobs:
 
       - name: Create a project based on our settings
         run: |
-          cd /tmp/
+          mkdir test_project
+          cd test_project
           django-admin startproject \
               --extension=ini,py,yml \
               --template=. \
@@ -36,13 +37,13 @@ jobs:
 
       - name: Docker - Build image from starter project
         run: |
-          cd /tmp/test_project
+          cd test_project
           docker-compose pull
           docker-compose build
 
       - name: Docker - Test generated starter project
         run: |
-          cd /tmp/test_project
+          cd test_project
           ls -la
           find .
           docker-compose run --rm web pytest
