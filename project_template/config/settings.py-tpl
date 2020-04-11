@@ -115,10 +115,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-###############
-# STATICFILES #
-###############
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/{{ docs_version }}/howto/static-files/
 
@@ -139,9 +135,7 @@ else:
     )
     # vars().update(EMAIL_CONFIG)
 
-################
-# OUR SETTINGS #
-################
+# Our settings
 
 ADMIN_URL = env("ADMIN_URL", default="admin/")
 
