@@ -143,6 +143,6 @@ else:
 # OUR SETTINGS #
 ################
 
-ADMIN_URL = env("ADMIN_URL", default="^admin/")
+ADMIN_URL = env("ADMIN_URL", default="admin/")
 
 SITE_ID = 1
