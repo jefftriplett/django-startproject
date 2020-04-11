@@ -32,10 +32,10 @@ FROM base AS dependencies
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-COPY requirements.txt /code/
+COPY requirements/requirements.txt /tmp/requirements.txt
 
 RUN set -ex \
-    && pip install -r requirements.txt \
+    && pip install -r /tmp/requirements.txt \
     && rm -rf /root/.cache/
 
 # ------------------------------------------------------------
