@@ -5,6 +5,7 @@ services:
     image: postgres
     volumes:
       - postgres_data:/var/lib/postgresql/data/
+
   web:
     build:
       context: .
@@ -21,11 +22,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - .:/code  # comment out to enable .dockerignore
-      # - node_modules:/code/node_modules
-      # - virtualenv_data:/root/.local/share/virtualenvs/
+      - .:/code
 
 volumes:
-  # node_modules:
-  # virtualenv_data:
   postgres_data:

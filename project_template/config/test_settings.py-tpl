@@ -18,17 +18,11 @@ logging.disable(logging.CRITICAL)
 # Disable DEBUG
 DEBUG = False
 
+# User a faster password hasher
+PASSWORD_HASHERS = ["django.contrib.auth.hashers.MD5PasswordHasher"]
+
 MIGRATION_MODULES = DisableMigrations()
 
-# User a faster password hasher
-PASSWORD_HASHERS = [
-    "django.contrib.auth.hashers.MD5PasswordHasher",
-]
+EMAIL_BACKEND = "django.core.mail.backends.locmem.EmailBackend"
 
-# CACHES = {
-#     'default': {
-#         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-#     }
-# }
-
-# SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+ROOT_URLCONF = "tests.urls"

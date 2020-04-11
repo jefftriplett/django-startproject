@@ -8,7 +8,7 @@ FROM krallin/ubuntu-tini:trusty as tini
 # Base layer
 # ------------------------------------------------------------
 
-FROM python:3.6.4-slim-stretch as base
+FROM python:3.7-slim-stretch as base
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
