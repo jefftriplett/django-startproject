@@ -29,6 +29,9 @@ ENTRYPOINT ["/usr/local/bin/tini", "--"]
 
 FROM base AS dependencies
 
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
 COPY requirements.txt /code/
 
 RUN set -ex \
@@ -56,6 +59,9 @@ RUN set -ex \
 # ------------------------------------------------------------
 
 FROM dependencies AS release
+
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
 
 COPY . /code/
 
