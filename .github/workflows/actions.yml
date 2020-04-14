@@ -29,6 +29,8 @@ jobs:
 
       - name: Create a project based on our settings
         run: |
+          ls -la
+          ls -la ./src/github.com/${{ github.repository }}/
           django-admin startproject \
               --extension=ini,py,yml \
               --template=./src/github.com/${{ github.repository }}/ \
