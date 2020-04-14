@@ -9,11 +9,11 @@ services:
       - postgres_data:/var/lib/postgresql/data/
 
   web:
+    # container_name: {{ project_name }}-web
     build:
       context: .
       dockerfile: ./Dockerfile
-      target: release
-    # container_name: {{ project_name }}-web
+      target: testing
     command: python manage.py runserver 0.0.0.0:8000
     depends_on:
       - db
@@ -24,7 +24,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - .:/code
+      - .:/src
 
 volumes:
   postgres_data:

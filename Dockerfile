@@ -2,32 +2,13 @@
 # Tini layer - to save us from having to maintain our own
 # ------------------------------------------------------------
 
-FROM krallin/ubuntu-tini:trusty as tini
+FROM krallin/ubuntu-tini:trusty AS tini
 
 # ------------------------------------------------------------
-# Base layer
+# Base/builder layer
 # ------------------------------------------------------------
 
-FROM python:3.7-slim-stretch as base
-
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
-
-RUN set -ex \
-    && pip install --upgrade pip \
-    && rm -rf /root/.cache/
-
-WORKDIR /code
-
-COPY --from=tini /usr/local/bin/tini /usr/local/bin/tini
-
-ENTRYPOINT ["/usr/local/bin/tini", "--"]
-
-# ------------------------------------------------------------
-# Dependency layer
-# ------------------------------------------------------------
-
-FROM base AS dependencies
+FROM python:3.7-slim-stretch AS builder
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
@@ -35,20 +16,25 @@ ENV PYTHONUNBUFFERED 1
 COPY requirements/requirements.txt /tmp/requirements.txt
 
 RUN set -ex \
+    && pip install --upgrade pip \
     && pip install -r /tmp/requirements.txt \
     && rm -rf /root/.cache/
 
 # ------------------------------------------------------------
-# Release / Production layer
+# Dev/testing layer
 # ------------------------------------------------------------
 
-FROM dependencies AS release
+FROM builder AS testing
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-COPY . /code/
+COPY . /src/
 
-EXPOSE 8000
+WORKDIR /src/
 
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+
+# ------------------------------------------------------------
+# TODO: Add Production notes
+# ------------------------------------------------------------
