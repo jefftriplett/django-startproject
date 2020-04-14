@@ -39,12 +39,8 @@ jobs:
           cd test_project
           docker-compose pull
           docker-compose build
-        with:
-          path: ./test_project/
 
       - name: Docker - Test generated starter project
         run: |
           cd test_project
           docker-compose run --rm web pytest
-        with:
-          path: ./test_project/
