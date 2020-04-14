@@ -10,7 +10,7 @@
 
 > Django startproject template with batteries
 
-## Features
+## :triangular_flag_on_post: Features
 
 - Django 3.0.x
 - django-click
@@ -20,7 +20,7 @@
 - psycopg2-binary
 - whitenoise
 
-### CI
+### :green_heart: CI
 
 - black
 - django-test-plus
@@ -34,7 +34,7 @@
 
 ### 🏠 [Homepage](https://github.com/jefftriplett/django-startproject)
 
-## Install
+## :wrench: Install
 
 ```shell
 $ django-admin startproject \
@@ -43,7 +43,7 @@ $ django-admin startproject \
     example_project
 ```
 
-## Usage
+## :rocket: Usage
 
 ```shell
 # Build our Docker Image
