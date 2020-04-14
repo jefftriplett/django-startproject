@@ -29,8 +29,6 @@ jobs:
 
       - name: Create a project based on our settings
         run: |
-          ls -la
-          ls -la ./src/github.com/${{ github.repository }}/
           django-admin startproject \
               --extension=ini,py,yml \
               --template=./src/github.com/${{ github.repository }}/ \
@@ -38,13 +36,15 @@ jobs:
 
       - name: Docker - Build image from starter project
         run: |
-          pwd
           cd test_project
           docker-compose pull
           docker-compose build
+        with:
+          path: ./test_project/
 
       - name: Docker - Test generated starter project
         run: |
-          pwd
           cd test_project
           docker-compose run --rm web pytest
+        with:
+          path: ./test_project/
