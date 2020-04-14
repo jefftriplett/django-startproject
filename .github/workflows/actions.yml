@@ -31,7 +31,7 @@ jobs:
         run: |
           django-admin startproject \
               --extension=ini,py,yml \
-              --template=./src/github.com/${{ github.repository }} \
+              --template=./src/github.com/${{ github.repository }}/ \
               test_project
 
       - name: Docker - Build image from starter project
