@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 1
-          path: ./src/github.com/${{ github.repository }}
+          path: ./src/github.com/${{ github.repository }}-git
 
       - name: Set up Python 3.7
         uses: actions/setup-python@v1
@@ -31,7 +31,7 @@ jobs:
         run: |
           django-admin startproject \
               --extension=ini,py,yml \
-              --template=./src/github.com/${{ github.repository }}/ \
+              --template=./src/github.com/${{ github.repository }}-git/ \
               test_project
 
       - name: Docker - Build image from starter project
