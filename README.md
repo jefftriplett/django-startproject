@@ -39,7 +39,7 @@
 ```shell
 $ django-admin startproject \
     --extension=ini,py,yml \
-    --template=https://github.com/jefftriplett/django-startproject/archive/master.zip \
+    --template=https://github.com/jefftriplett/django-startproject/archive/main.zip \
     example_project
 ```
 
