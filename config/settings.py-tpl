@@ -12,13 +12,10 @@ https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/
 
 import environs
 
-from pathlib import Path
-
-
 env = environs.Env()
 
-BASE_DIR = environs.Path(__file__).parent.parent
-
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = environs.Path(__file__).resolve(strict=True).parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/{{ docs_version }}/howto/deployment/checklist/
