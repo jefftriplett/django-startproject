@@ -12,7 +12,7 @@
 
 ## :triangular_flag_on_post: Features
 
-- Django 3.1.x
+- Django 3.2.x
 - django-click
 - Docker
 - Docker Compose
