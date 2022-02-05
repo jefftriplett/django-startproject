@@ -2,7 +2,7 @@
 # Base/builder layer
 # ------------------------------------------------------------
 
-FROM python:3.7-slim-stretch AS builder
+FROM python:3.9-slim-stretch AS builder
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
@@ -18,7 +18,7 @@ RUN set -ex \
 # Dev/testing layer
 # ------------------------------------------------------------
 
-FROM builder AS testing
+FROM builder AS dev
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1

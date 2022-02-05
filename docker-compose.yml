@@ -1,4 +1,4 @@
-version: '3.4'
+version: "3.4"
 
 services:
 
@@ -7,14 +7,13 @@ services:
     environment:
       - "POSTGRES_HOST_AUTH_METHOD=trust"
     volumes:
-      - postgres_data:/var/lib/postgresql/data/
+      - postgres-data:/var/lib/postgresql/data/
 
   web:
-    # container_name: {{ project_name }}-web
     build:
       context: .
       dockerfile: ./Dockerfile
-      target: testing
+      target: dev
     command: python manage.py runserver 0.0.0.0:8000
     depends_on:
       - db
@@ -26,6 +25,10 @@ services:
       - "8000:8000"
     volumes:
       - .:/src
+      - django-media:/src/media
+      - django-static:/src/static
 
 volumes:
-  postgres_data:
+  django-media:
+  django-static:
+  postgres-data:
