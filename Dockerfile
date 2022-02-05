@@ -2,23 +2,24 @@
 # Base/builder layer
 # ------------------------------------------------------------
 
-FROM python:3.9-slim-stretch AS builder
+FROM python:3.9-slim-buster AS builder
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 COPY requirements/requirements.txt /tmp/requirements.txt
 
-RUN set -ex \
-    && pip install --upgrade pip \
-    && pip install -r /tmp/requirements.txt \
-    && rm -rf /root/.cache/
+RUN --mount=type=cache,target=/root/.cache \
+    set -ex && \
+    pip install --upgrade pip && \
+    pip install -r /tmp/requirements.txt && \
+    rm -rf /root/.cache/
 
 # ------------------------------------------------------------
 # Dev/testing layer
 # ------------------------------------------------------------
 
-FROM builder AS dev
+FROM builder AS release
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
