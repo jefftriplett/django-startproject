@@ -1,9 +1,7 @@
-version: "3.7"
-
 services:
 
   db:
-    image: "postgres:11"
+    image: "postgres:14"
     environment:
       - "POSTGRES_HOST_AUTH_METHOD=trust"
     volumes:
