@@ -12,7 +12,7 @@
 
 ## :triangular_flag_on_post: Features
 
-- Django 4.0.x
+- Django 4.1.x
 - django-click
 - Docker
 - Docker Compose
