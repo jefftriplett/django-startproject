@@ -1,0 +1,17 @@
+[tool.black]
+target-version = ["py310"]
+
+[tool.coverage.run]
+omit = [
+    "*/admin.py",
+    "*/manage.py",
+    "*/migrations/*",
+    "*/tests/*",
+    "conftest.py",
+]
+
+[tool.pytest.ini_options]
+addopts = "--cov --nomigrations --reuse-db"
+DJANGO_SETTINGS_MODULE = "config.settings"
+norecursedirs = ".git* frontend requirements templates"
+python_files = "test_*.py"
