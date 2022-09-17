@@ -138,6 +138,9 @@ else:
     EMAIL_PORT = email["EMAIL_PORT"]
     EMAIL_USE_TLS = email["EMAIL_USE_TLS"]
 
+# Parse cache URLS, e.g "redis://localhost:6379/0"
+CACHES = {"default": env.dj_cache_url("CACHE_URL")}
+
 # Our settings
 
 ADMIN_URL = env("ADMIN_URL", default="admin/")
