@@ -28,7 +28,6 @@
 - model-bakery
 - pip-tools
 - pytest
-- pytest-black
 - pytest-cov
 - pytest-django
 
