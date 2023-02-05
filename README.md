@@ -22,11 +22,9 @@
 
 ### :green_heart: CI
 
-- black
 - django-test-plus
-- ipdb
 - model-bakery
-- pip-tools
+- pre-commit
 - pytest
 - pytest-cov
 - pytest-django
