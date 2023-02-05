@@ -80,7 +80,7 @@ $ docker-compose run --rm web pip-compile requirements/requirements.in
 
 ## 🤝 Contributing
 
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/jefftriplett/django-startproject/issues). 
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/jefftriplett/django-startproject/issues).
 
 ## Show your support
 
