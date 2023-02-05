@@ -9,11 +9,10 @@ ENV PYTHONUNBUFFERED 1
 
 COPY requirements/requirements.txt /tmp/requirements.txt
 
-RUN --mount=type=cache,target=/root/.cache,id=pip \
-    set -ex && \
+# add ",sharing=locked" if release should block until builder is complete
+RUN --mount=type=cache,target=/root/.cache,sharing=locked,id=pip \
     pip install --upgrade pip pip-tools && \
-    pip install -r /tmp/requirements.txt && \
-    rm -rf /root/.cache/
+    pip install -r /tmp/requirements.txt
 
 # ------------------------------------------------------------
 # Dev/testing layer
