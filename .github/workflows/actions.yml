@@ -6,6 +6,9 @@ on:
     branches:
       - main
 
+env:
+  DOCKER_BUILDKIT: "1"
+
 jobs:
   test:
     runs-on: ubuntu-latest
