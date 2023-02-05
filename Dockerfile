@@ -9,9 +9,9 @@ ENV PYTHONUNBUFFERED 1
 
 COPY requirements/requirements.txt /tmp/requirements.txt
 
-# RUN --mount=type=cache,target=/root/.cache \
-RUN set -ex && \
-    pip install --upgrade pip && \
+RUN --mount=type=cache,target=/root/.cache,id=pip \
+    set -ex && \
+    pip install --upgrade pip pip-tools && \
     pip install -r /tmp/requirements.txt && \
     rm -rf /root/.cache/
 
