@@ -35,7 +35,7 @@
 
 ```shell
 $ django-admin startproject \
-    --extension=ini,py,yml \
+    --extension=ini,py,toml,yaml,yml \
     --template=https://github.com/jefftriplett/django-startproject/archive/main.zip \
     example_project
 ```
