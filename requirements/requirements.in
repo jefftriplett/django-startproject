@@ -1,5 +1,5 @@
 django-click
-Django<4.2
+Django<5.0
 environs[django]
 psycopg2-binary
 whitenoise
