@@ -15,7 +15,7 @@ repos:
       - id: end-of-file-fixer
       - id: trailing-whitespace
   - repo: https://github.com/rtts/djhtml
-    rev: 'v2.0.0'
+    rev: '3.0.6'
     hooks:
       - id: djhtml
         entry: djhtml --tabwidth 4
@@ -25,23 +25,23 @@ repos:
       # - id: djjs
       #   alias: autoformat
   - repo: https://github.com/adamchainz/django-upgrade
-    rev: 1.12.0
+    rev: 1.13.0
     hooks:
       - id: django-upgrade
-        args: [--target-version, "4.1"]
+        args: [--target-version, "4.2"]
         alias: autoformat
   - repo: https://github.com/psf/black
-    rev: 23.1.0
+    rev: 23.3.0
     hooks:
       - id: black
         alias: autoformat
   - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.0.185
+    rev: v0.0.261
     hooks:
       - id: ruff
         alias: autoformat
   - repo: https://github.com/asottile/blacken-docs
-    rev: v1.12.1
+    rev: 1.13.0
     hooks:
       - id: blacken-docs
         alias: autoformat
