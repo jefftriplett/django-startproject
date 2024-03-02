@@ -2,17 +2,25 @@
 # Base/builder layer
 # ------------------------------------------------------------
 
-FROM python:3.10-slim-buster AS builder
+FROM python:3.12-slim-bookworm AS builder
 
+ENV PATH /venv/bin:/bin:/usr/bin:/usr/local/bin
+ENV PIP_DISABLE_PIP_VERSION_CHECK 1
 ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONPATH /srv
 ENV PYTHONUNBUFFERED 1
 
 COPY requirements/requirements.txt /tmp/requirements.txt
 
 # add ",sharing=locked" if release should block until builder is complete
 RUN --mount=type=cache,target=/root/.cache,sharing=locked,id=pip \
-    pip install --upgrade pip pip-tools && \
-    pip install -r /tmp/requirements.txt
+    python -m pip install --upgrade pip uv
+
+RUN python -m uv venv /venv
+
+RUN --mount=type=cache,target=/root/.cache,sharing=locked,id=pip \
+    . /venv/bin/activate && \
+    uv pip install -r /tmp/requirements.txt
 
 # ------------------------------------------------------------
 # Dev/testing layer
@@ -20,14 +28,11 @@ RUN --mount=type=cache,target=/root/.cache,sharing=locked,id=pip \
 
 FROM builder AS release
 
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
-
 COPY . /src/
 
 WORKDIR /src/
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["python", "-m", "manage", "runserver", "0.0.0.0:8000"]
 
 # ------------------------------------------------------------
 # TODO: Add Production notes
