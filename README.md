@@ -1,8 +1,5 @@
 <h1 align="center">Welcome to django-startproject 👋</h1>
 <p>
-  <a href="https://twitter.com/webology" target="_blank">
-    <img alt="Twitter: webology" src="https://img.shields.io/twitter/follow/webology.svg?style=social" />
-  </a>
   <a href="https://github.com/jefftriplett/django-startproject/actions" target="_blank">
     <img alt="CI" src="https://github.com/jefftriplett/django-startproject/workflows/CI/badge.svg" />
   </a>
@@ -80,7 +77,7 @@ $ just lock
 
 * Website: https://jefftriplett.com
 * Mastodon: [@webology@mastodon.social](https://mastodon.social/@webology)
-* Twitter: [@webology](https://twitter.com/webology)
+* Xwitter: [@webology](https://twitter.com/webology)
 * GitHub: [@jefftriplett](https://github.com/jefftriplett)
 
 ## 🤝 Contributing
