@@ -1,0 +1,10 @@
+services:
+
+  db:
+    platform: linux/amd64
+
+  utility:
+    platform: linux/arm64
+
+  web:
+    platform: linux/arm64

@@ -11,8 +11,6 @@ x-common-settings: &common-settings
     - "DJANGO_DEBUG=true"
   volumes:
     - .:/src:cache
-    - django-media:/src/media
-    - django-static:/src/static
 
 services:
 
@@ -37,6 +35,4 @@ services:
     tty: true
 
 volumes:
-  django-media:
-  django-static:
   postgres-data:
