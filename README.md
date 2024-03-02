@@ -43,6 +43,9 @@ $ django-admin startproject \
 ## :rocket: Usage
 
 ```shell
+# Bootstrap our project
+$ just bootstrap
+
 # Build our Docker Image
 $ just build
 
