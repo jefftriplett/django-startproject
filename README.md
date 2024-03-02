@@ -120,9 +120,9 @@ for command in summary.stdout.decode('utf-8').split(' '):
     cog.outl(
         "<details>\n"
         "<summary>\n"
-        "```shell\n"
+        "<code>\n"
         f"$ just {command}\n"
-        "```\n"
+        "</code>\n"
         "</summary>\n"
     )
     command_show = subprocess.run(['just', '--show', command], stdout=subprocess.PIPE)
@@ -135,9 +135,9 @@ for command in summary.stdout.decode('utf-8').split(' '):
 
 <details>
 <summary>
-```shell
+<code>
 $ just bootstrap
-```
+</code>
 </summary>
 
 ```shell
@@ -167,9 +167,9 @@ bootstrap *ARGS:
 
 <details>
 <summary>
-```shell
+<code>
 $ just build
-```
+</code>
 </summary>
 
 ```shell
@@ -182,9 +182,9 @@ $ just build
 
 <details>
 <summary>
-```shell
+<code>
 $ just console
-```
+</code>
 </summary>
 
 ```shell
@@ -197,9 +197,9 @@ $ just console
 
 <details>
 <summary>
-```shell
+<code>
 $ just down
-```
+</code>
 </summary>
 
 ```shell
@@ -212,9 +212,9 @@ $ just down
 
 <details>
 <summary>
-```shell
+<code>
 $ just lint
-```
+</code>
 </summary>
 
 ```shell
@@ -227,9 +227,9 @@ $ just lint
 
 <details>
 <summary>
-```shell
+<code>
 $ just lock
-```
+</code>
 </summary>
 
 ```shell
@@ -248,9 +248,9 @@ $ just lock
 
 <details>
 <summary>
-```shell
+<code>
 $ just logs
-```
+</code>
 </summary>
 
 ```shell
@@ -263,9 +263,9 @@ $ just logs
 
 <details>
 <summary>
-```shell
+<code>
 $ just manage
-```
+</code>
 </summary>
 
 ```shell
@@ -278,9 +278,9 @@ $ just manage
 
 <details>
 <summary>
-```shell
+<code>
 $ just pg_dump
-```
+</code>
 </summary>
 
 ```shell
@@ -301,9 +301,9 @@ $ just pg_dump
 
 <details>
 <summary>
-```shell
+<code>
 $ just pg_restore
-```
+</code>
 </summary>
 
 ```shell
@@ -326,9 +326,9 @@ $ just pg_restore
 
 <details>
 <summary>
-```shell
+<code>
 $ just pre-commit
-```
+</code>
 </summary>
 
 ```shell
@@ -341,9 +341,9 @@ $ just pre-commit
 
 <details>
 <summary>
-```shell
+<code>
 $ just restart
-```
+</code>
 </summary>
 
 ```shell
@@ -356,9 +356,9 @@ $ just restart
 
 <details>
 <summary>
-```shell
+<code>
 $ just run
-```
+</code>
 </summary>
 
 ```shell
@@ -371,9 +371,9 @@ $ just run
 
 <details>
 <summary>
-```shell
+<code>
 $ just start
-```
+</code>
 </summary>
 
 ```shell
@@ -386,9 +386,9 @@ $ just start
 
 <details>
 <summary>
-```shell
+<code>
 $ just stop
-```
+</code>
 </summary>
 
 ```shell
@@ -401,9 +401,9 @@ $ just stop
 
 <details>
 <summary>
-```shell
+<code>
 $ just tail
-```
+</code>
 </summary>
 
 ```shell
@@ -416,9 +416,9 @@ $ just tail
 
 <details>
 <summary>
-```shell
+<code>
 $ just test
-```
+</code>
 </summary>
 
 ```shell
@@ -431,9 +431,9 @@ $ just test
 
 <details>
 <summary>
-```shell
+<code>
 $ just up
-```
+</code>
 </summary>
 
 ```shell
@@ -446,9 +446,9 @@ $ just up
 
 <details>
 <summary>
-```shell
+<code>
 $ just upgrade
-```
+</code>
 </summary>
 
 ```shell
