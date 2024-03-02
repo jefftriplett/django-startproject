@@ -2,6 +2,7 @@ services:
 
   db:
     platform: linux/amd64
+    # platform: linux/arm64/v8
 
   utility:
     platform: linux/arm64

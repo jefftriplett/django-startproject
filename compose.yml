@@ -29,6 +29,7 @@ services:
   web:
     <<: *common-settings
     command: ["python", "-m", "manage", "runserver", "0.0.0.0:8000"]
+    entrypoint: ["/src/compose-entrypoint.sh"]
     init: true
     ports:
       - "8000:8000"
