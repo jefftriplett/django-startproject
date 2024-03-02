@@ -4,11 +4,13 @@ x-common-settings: &common-settings
     dockerfile: ./Dockerfile
     target: release
   depends_on:
-    - db
+    db:
+      condition: service_healthy
   environment:
     - "ALLOWED_HOSTS=*"
     - "DATABASE_URL=postgres://postgres@db/postgres"
     - "DJANGO_DEBUG=true"
+  restart: on-failure
   volumes:
     - .:/src:cache
 
@@ -17,6 +19,11 @@ services:
   db:
     environment:
       - "POSTGRES_HOST_AUTH_METHOD=trust"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-d", "postgres"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
     image: "pgautoupgrade/pgautoupgrade:latest"
     init: true
     volumes:
