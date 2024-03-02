@@ -104,4 +104,4 @@ bootstrap *ARGS:
     python -m pip install --upgrade pip uv
     python -m uv pip install --upgrade pre-commit
     python -m uv pip install --upgrade --requirement requirements.in
-    just --upgrade
+    just upgrade
