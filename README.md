@@ -76,8 +76,9 @@ $ just lock
 👤 **Jeff Triplett**
 
 * Website: https://jefftriplett.com
+* Mastodon: [@webology@mastodon.social](https://mastodon.social/@webology)
 * Twitter: [@webology](https://twitter.com/webology)
-* Github: [@jefftriplett](https://github.com/jefftriplett)
+* GitHub: [@jefftriplett](https://github.com/jefftriplett)
 
 ## 🤝 Contributing
 
