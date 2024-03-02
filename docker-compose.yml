@@ -1,30 +1,40 @@
+x-common-settings: &common-settings
+  build:
+    context: .
+    dockerfile: ./Dockerfile
+    target: release
+  depends_on:
+    - db
+  environment:
+    - "ALLOWED_HOSTS=*"
+    - "DATABASE_URL=postgres://postgres@db/postgres"
+    - "DJANGO_DEBUG=true"
+  volumes:
+    - .:/src:cache
+    - django-media:/src/media
+    - django-static:/src/static
+
 services:
 
   db:
-    image: "postgres:14"
     environment:
       - "POSTGRES_HOST_AUTH_METHOD=trust"
+    image: "pgautoupgrade/pgautoupgrade:latest"
+    init: true
     volumes:
+      - .:/src:cache
       - postgres-data:/var/lib/postgresql/data/
 
+  utility:
+    <<: *common-settings
+
   web:
-    build:
-      context: .
-      dockerfile: ./Dockerfile
-      target: release
-    command: python manage.py runserver 0.0.0.0:8000
-    depends_on:
-      - db
-    environment:
-      - "ALLOWED_HOSTS=*"
-      - "DATABASE_URL=postgres://postgres@db/postgres"
-      - "DJANGO_DEBUG=true"
+    <<: *common-settings
+    command: ["python", "-m", "manage", "runserver", "0.0.0.0:8000"]
+    init: true
     ports:
       - "8000:8000"
-    volumes:
-      - .:/src
-      - django-media:/src/media
-      - django-static:/src/static
+    tty: true
 
 volumes:
   django-media:

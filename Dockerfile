@@ -10,7 +10,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONPATH /srv
 ENV PYTHONUNBUFFERED 1
 
-COPY requirements/requirements.txt /tmp/requirements.txt
+COPY requirements.txt /tmp/requirements.txt
 
 # add ",sharing=locked" if release should block until builder is complete
 RUN --mount=type=cache,target=/root/.cache,sharing=locked,id=pip \
