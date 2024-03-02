@@ -14,10 +14,10 @@
 
 - Django 5.0
 - Python 3.12
-- django-click
-- Docker
 - Docker Compose
+- django-click
 - environs[django]
+- pre-commit
 - psycopg2-binary
 - whitenoise
 
@@ -25,7 +25,6 @@
 
 - django-test-plus
 - model-bakery
-- pre-commit
 - pytest
 - pytest-cov
 - pytest-django
@@ -45,28 +44,28 @@ $ django-admin startproject \
 
 ```shell
 # Build our Docker Image
-$ docker compose build
+$ just build
 
 # Run Migrations
-$ docker compose run --rm web python manage.py migrate
+$ docker compose run --rm utility python manage.py migrate
 
 # Create a Superuser in Django
-$ docker compose run --rm web python manage.py createsuperuser
+$ docker compose run --rm utility python manage.py createsuperuser
 
 # Run Django on http://localhost:8000/
-$ docker compose up
+$ just up
 
 # Run Django in background mode
-$ docker compose up -d
+$ just start
 
 # Stop all running containers
-$ docker compose down
+$ just down
 
 # Run Tests
-$ docker compose run --rm web pytest
+$ just test
 
 # Re-build PIP requirements
-$ docker compose run --rm web pip-compile requirements/requirements.in
+$ just lock
 ```
 
 ## Author
