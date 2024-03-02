@@ -38,8 +38,8 @@ bootstrap *ARGS:
 @down:
     docker compose down
 
-@lint:
-    python -m pre_commit run --all-files
+@lint *ARGS:
+    python -m pre_commit run {{ ARGS }} --all-files
 
 @lock *ARGS:
     docker compose run \
@@ -79,9 +79,6 @@ bootstrap *ARGS:
             --no-owner \
             --verbose \
             /src/{{ file }}
-
-@pre-commit *ARGS:
-    python -m pre_commit run {{ ARGS }} --all-files
 
 @restart *ARGS:
     docker compose restart {{ ARGS }}
