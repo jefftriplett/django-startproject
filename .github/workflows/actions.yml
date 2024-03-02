@@ -41,10 +41,10 @@ jobs:
       - name: Docker - Build image from starter project
         run: |
           cd test_project
-          docker-compose pull
-          docker-compose build
+          docker compose pull
+          docker compose build
 
       - name: Docker - Test generated starter project
         run: |
           cd test_project
-          docker-compose run --rm web pytest
+          docker compose run --rm web pytest

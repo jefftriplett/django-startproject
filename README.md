@@ -12,7 +12,8 @@
 
 ## :triangular_flag_on_post: Features
 
-- Django 4.2.x
+- Django 5.0
+- Python 3.12
 - django-click
 - Docker
 - Docker Compose
@@ -44,28 +45,28 @@ $ django-admin startproject \
 
 ```shell
 # Build our Docker Image
-$ docker-compose build
+$ docker compose build
 
 # Run Migrations
-$ docker-compose run --rm web python manage.py migrate
+$ docker compose run --rm web python manage.py migrate
 
 # Create a Superuser in Django
-$ docker-compose run --rm web python manage.py createsuperuser
+$ docker compose run --rm web python manage.py createsuperuser
 
 # Run Django on http://localhost:8000/
-$ docker-compose up
+$ docker compose up
 
 # Run Django in background mode
-$ docker-compose up -d
+$ docker compose up -d
 
 # Stop all running containers
-$ docker-compose down
+$ docker compose down
 
 # Run Tests
-$ docker-compose run --rm web pytest
+$ docker compose run --rm web pytest
 
 # Re-build PIP requirements
-$ docker-compose run --rm web pip-compile requirements/requirements.in
+$ docker compose run --rm web pip-compile requirements/requirements.in
 ```
 
 ## Author

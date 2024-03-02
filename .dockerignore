@@ -1,7 +1,7 @@
 **/__pycache__
 *.pyc
 .*
-docker-compose.yml
+compose.override.yml
 Dockerfile
 justfile
 LICENSE

@@ -18,9 +18,9 @@ bootstrap *ARGS:
         cp .env.example .env
     fi
 
-    if [ ! -f "docker compose.override.yml" ]; then
-        echo "docker compose.override.yml created"
-        cp docker compose.override.yml-dist compose.override.yml
+    if [ ! -f "compose.override.yml" ]; then
+        echo "compose.override.yml created"
+        cp compose.override.yml-dist compose.override.yml
     fi
 
     docker compose {{ ARGS }} build --force-rm
