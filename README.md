@@ -82,7 +82,7 @@ import cog
 
 list = subprocess.run(['just', '--list'], stdout=subprocess.PIPE)
 cog.out(
-    f"```\n{list.stdout.decode('utf-8')}\n```"
+    f"```\n{list.stdout.decode('utf-8')}```"
 )
 ]]] -->
 ```
@@ -105,7 +105,6 @@ Available recipes:
     test *ARGS
     up *ARGS
     upgrade
-
 ```
 <!-- [[[end]]] -->
 
