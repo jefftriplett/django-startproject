@@ -47,10 +47,10 @@ $ django-admin startproject \
 $ just build
 
 # Run Migrations
-$ docker compose run --rm utility python manage.py migrate
+$ just manage migrate
 
 # Create a Superuser in Django
-$ docker compose run --rm utility python manage.py createsuperuser
+$ just manage createsuperuser
 
 # Run Django on http://localhost:8000/
 $ just up
@@ -60,6 +60,9 @@ $ just start
 
 # Stop all running containers
 $ just down
+
+# Open a bash shell/console
+$ just console
 
 # Run Tests
 $ just test

@@ -1,7 +1,5 @@
 set dotenv-load := false
 
-compose := "docker compose run --rm --no-deps utility"
-
 @_default:
     just --list
 
@@ -35,7 +33,7 @@ bootstrap *ARGS:
     docker compose build {{ ARGS }}
 
 @console:
-    {{ compose }} /bin/bash
+    docker compose run --rm --no-deps utility /bin/bash
 
 @down:
     docker compose down
@@ -54,6 +52,9 @@ bootstrap *ARGS:
 
 @logs *ARGS:
     docker compose logs {{ ARGS }}
+
+@manage *ARGS:
+    docker compose run --rm --no-deps utility python -m manage {{ ARGS }}
 
 # dump database to file
 @pg_dump file='db.dump':
@@ -85,6 +86,9 @@ bootstrap *ARGS:
 @restart *ARGS:
     docker compose restart {{ ARGS }}
 
+@run *ARGS:
+    docker compose run --rm --no-deps utility {{ ARGS }}
+
 @start *ARGS="--detach":
     just up {{ ARGS }}
 
@@ -95,7 +99,7 @@ bootstrap *ARGS:
     just logs --follow
 
 @test *ARGS:
-    {{ compose }} pytest {{ ARGS }}
+    docker compose run --rm --no-deps utility python -m pytest {{ ARGS }}
 
 @up *ARGS:
     docker compose up {{ ARGS }}
