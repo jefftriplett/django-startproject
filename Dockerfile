@@ -16,7 +16,7 @@ RUN --mount=type=cache,target=/root/.cache,sharing=locked,id=pip \
     python -m pip install --upgrade pip uv
 
 RUN --mount=type=cache,target=/root/.cache,sharing=locked,id=pip \
-    uv pip install --system --requirement /tmp/requirements.txt
+    python -m uv pip install --system --requirement /tmp/requirements.txt
 
 # ------------------------------------------------------------
 # Dev/testing layer

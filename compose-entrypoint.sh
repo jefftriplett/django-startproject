@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -eo pipefail
 
-python manage.py migrate --noinput --skip-checks
+python -m manage migrate --noinput --skip-checks
 
-python manage.py collectstatic --noinput --skip-checks
+python -m manage collectstatic --noinput --skip-checks
 
 exec "$@"
