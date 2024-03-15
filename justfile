@@ -23,9 +23,7 @@ bootstrap *ARGS:
         cp compose.override.yml-dist compose.override.yml
     fi
 
-    python -m pip install --upgrade pip uv
-    python -m uv pip install --upgrade pre-commit
-    python -m uv pip install --upgrade --requirement requirements.in
+    just upgrade
 
     docker compose {{ ARGS }} build --force-rm
 
@@ -103,6 +101,4 @@ bootstrap *ARGS:
 
 @upgrade:
     python -m pip install --upgrade pip uv
-    python -m uv pip install --upgrade pre-commit
     python -m uv pip install --upgrade --requirement requirements.in
-    just upgrade
