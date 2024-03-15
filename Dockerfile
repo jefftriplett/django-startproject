@@ -4,7 +4,6 @@
 
 FROM python:3.12-slim-bookworm AS builder
 
-ENV PATH /venv/bin:/bin:/usr/bin:/usr/local/bin
 ENV PIP_DISABLE_PIP_VERSION_CHECK 1
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONPATH /srv
@@ -16,11 +15,8 @@ COPY requirements.txt /tmp/requirements.txt
 RUN --mount=type=cache,target=/root/.cache,sharing=locked,id=pip \
     python -m pip install --upgrade pip uv
 
-RUN python -m uv venv /venv
-
 RUN --mount=type=cache,target=/root/.cache,sharing=locked,id=pip \
-    . /venv/bin/activate && \
-    uv pip install -r /tmp/requirements.txt
+    uv pip install --system --requirement /tmp/requirements.txt
 
 # ------------------------------------------------------------
 # Dev/testing layer
