@@ -6,7 +6,7 @@ cfgv==3.4.0
     # via pre-commit
 click==8.1.7
     # via django-click
-coverage==7.4.3
+coverage[toml]==7.4.3
     # via pytest-cov
 distlib==0.3.8
     # via virtualenv
@@ -16,13 +16,17 @@ dj-email-url==1.0.6
     # via environs
 django==5.0.2
     # via
+    #   -r requirements.in
     #   dj-database-url
     #   model-bakery
 django-cache-url==3.4.5
     # via environs
 django-click==2.3.0
+    # via -r requirements.in
 django-test-plus==2.2.3
-environs==10.3.0
+    # via -r requirements.in
+environs[django]==10.3.0
+    # via -r requirements.in
 filelock==3.13.1
     # via virtualenv
 identify==2.5.35
@@ -32,6 +36,7 @@ iniconfig==2.0.0
 marshmallow==3.21.0
     # via environs
 model-bakery==1.17.0
+    # via -r requirements.in
 nodeenv==1.8.0
     # via pre-commit
 packaging==23.2
@@ -43,23 +48,27 @@ platformdirs==4.2.0
 pluggy==1.4.0
     # via pytest
 pre-commit==3.6.2
+    # via -r requirements.in
 psycopg2-binary==2.9.9
+    # via -r requirements.in
 pytest==8.0.2
     # via
+    #   -r requirements.in
     #   pytest-cov
     #   pytest-django
 pytest-cov==4.1.0
+    # via -r requirements.in
 pytest-django==4.8.0
+    # via -r requirements.in
 python-dotenv==1.0.1
     # via environs
 pyyaml==6.0.1
     # via pre-commit
-setuptools==69.1.1
-    # via nodeenv
-sqlparse==0.4.4
+sqlparse==0.5.0
     # via django
 typing-extensions==4.10.0
     # via dj-database-url
 virtualenv==20.25.1
     # via pre-commit
 whitenoise==6.6.0
+    # via -r requirements.in
