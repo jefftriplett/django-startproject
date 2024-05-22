@@ -23,8 +23,11 @@ def use_test_settings(settings):
     # User a faster password hasher
     settings.PASSWORD_HASHERS = ["django.contrib.auth.hashers.MD5PasswordHasher"]
 
-    settings.STATICFILES_STORAGE = (
-        "django.contrib.staticfiles.storage.StaticFilesStorage"
-    )
+    settings.STORAGES = {
+        "staticfiles": {
+            "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage"
+        }
+    }
+
 
     settings.WHITENOISE_AUTOREFRESH = True
