@@ -32,10 +32,11 @@ services:
 
   utility:
     <<: *common-settings
+    tty: true
 
   web:
     <<: *common-settings
-    command: ["python", "-m", "manage", "runserver", "0.0.0.0:8000"]
+    command: ["python", "-m", "manage", "runserver", "--noinput", "--skip-checks", "0.0.0.0:8000"]
     entrypoint: ["/src/compose-entrypoint.sh"]
     init: true
     ports:
