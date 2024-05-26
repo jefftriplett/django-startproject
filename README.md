@@ -12,11 +12,19 @@
 - Django 5.0
 - Python 3.12
 - Docker Compose
+- uv
 - django-click
 - environs[django]
-- pre-commit
 - psycopg2-binary
 - whitenoise
+
+## :shirt: Linting/auto-formatting
+
+- django-upgrade
+- djhtml
+- pre-commit
+- pyupgrade
+- ruff
 
 ### :green_heart: CI
 
