@@ -28,8 +28,8 @@ bootstrap *ARGS:
 @console:
     docker compose run --rm --no-deps utility /bin/bash
 
-@down:
-    docker compose down
+@down *ARGS:
+    docker compose down {{ ARGS }}
 
 @lint *ARGS:
     python -m pre_commit run {{ ARGS }} --all-files
@@ -82,8 +82,8 @@ bootstrap *ARGS:
 @start *ARGS="--detach":
     just up {{ ARGS }}
 
-@stop:
-    just down
+@stop *ARGS:
+    just down {{ ARGS }}
 
 @tail:
     just logs --follow

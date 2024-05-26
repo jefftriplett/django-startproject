@@ -98,7 +98,7 @@ Available recipes:
     bootstrap *ARGS
     build *ARGS
     console
-    down
+    down *ARGS
     lint *ARGS
     lock *ARGS
     logs *ARGS
@@ -108,7 +108,7 @@ Available recipes:
     restart *ARGS
     run *ARGS
     start *ARGS="--detach"
-    stop
+    stop *ARGS
     tail
     test *ARGS
     up *ARGS
