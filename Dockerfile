@@ -28,7 +28,7 @@ COPY . /src/
 
 WORKDIR /src/
 
-CMD ["python", "-m", "manage", "runserver", "0.0.0.0:8000"]
+CMD ["python", "-m", "manage", "runserver", "--skip-checks", "0.0.0.0:8000"]
 
 # ------------------------------------------------------------
 # TODO: Add Production notes
