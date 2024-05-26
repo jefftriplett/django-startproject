@@ -18,14 +18,9 @@ bootstrap *ARGS:
         cp .env-dist .env
     fi
 
-    if [ ! -f "compose.override.yml" ]; then
-        echo "compose.override.yml created"
-        cp compose.override.yml-dist compose.override.yml
-    fi
-
     just upgrade
 
-    docker compose {{ ARGS }} build --force-rm
+    just build {{ ARGS }} --force-rm
 
 @build *ARGS:
     docker compose build {{ ARGS }}
@@ -100,5 +95,4 @@ bootstrap *ARGS:
     docker compose up {{ ARGS }}
 
 @upgrade:
-    python -m pip install --upgrade pip uv
-    python -m uv pip install --upgrade --requirement requirements.in
+    just lock --upgrade
