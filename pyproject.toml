@@ -17,13 +17,6 @@ norecursedirs = ".git* frontend requirements templates"
 python_files = "test_*.py"
 
 [tool.ruff]
-# Enable Pyflakes `E` and `F` codes by default.
-select = ["E", "F"]
-ignore = ["E501", "E741"] # temporary
-
-# Allow autofix for all enabled rules (when `--fix`) is provided.
-fixable = ["A", "B", "C", "D", "E", "F"]
-unfixable = []
 
 # Exclude a variety of commonly ignored directories.
 exclude = [
@@ -46,13 +39,22 @@ exclude = [
     "static",
 ]
 
-per-file-ignores = {}
-
 # Same as Black.
 line-length = 120
 
+# Assume Python 3.12.
+target-version = "py312"
+
+[tool.ruff.lint]
 # Allow unused variables when underscore-prefixed.
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
-# Assume Python 3.12.
-target-version = "py312"
+# Allow autofix for all enabled rules (when `--fix`) is provided.
+fixable = ["A", "B", "C", "D", "E", "F"]
+unfixable = []
+
+# Enable Pyflakes `E` and `F` codes by default.
+select = ["E", "F"]
+ignore = ["E501", "E741"] # temporary
+
+per-file-ignores = {}
