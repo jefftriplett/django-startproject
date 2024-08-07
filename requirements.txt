@@ -6,7 +6,7 @@ cfgv==3.4.0
     # via pre-commit
 click==8.1.7
     # via django-click
-coverage==7.5.2
+coverage[toml]==7.5.2
     # via pytest-cov
 distlib==0.3.8
     # via virtualenv
@@ -14,7 +14,7 @@ dj-database-url==2.1.0
     # via environs
 dj-email-url==1.0.6
     # via environs
-django==5.0.6
+django==5.0.8
     # via
     #   -r requirements.in
     #   dj-database-url
@@ -25,7 +25,7 @@ django-click==2.4.0
     # via -r requirements.in
 django-test-plus==2.2.3
     # via -r requirements.in
-environs==11.0.0
+environs[django]==11.0.0
     # via -r requirements.in
 filelock==3.14.0
     # via virtualenv
@@ -64,8 +64,6 @@ python-dotenv==1.0.1
     # via environs
 pyyaml==6.0.1
     # via pre-commit
-setuptools==70.0.0
-    # via nodeenv
 sqlparse==0.5.0
     # via django
 typing-extensions==4.12.0
