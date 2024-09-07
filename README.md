@@ -15,7 +15,7 @@
 - uv
 - django-click
 - environs[django]
-- psycopg2-binary
+- psycopg[binary]
 - whitenoise
 
 ## :shirt: Linting/auto-formatting
