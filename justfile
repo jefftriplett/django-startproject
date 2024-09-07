@@ -14,11 +14,16 @@ bootstrap *ARGS:
     set -euo pipefail
 
     if [ ! -f ".env" ]; then
-        echo ".env created"
         cp .env-dist .env
+        echo ".env created"
     fi
 
     python -m pip install --upgrade pip uv
+
+    if [ ! -f "requirements.txt" ]; then
+        uv pip compile requirements.in --output-file requirements.txt
+        echo "requirements.txt created"
+    fi
 
     just upgrade
 
