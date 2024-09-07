@@ -4,7 +4,7 @@ set dotenv-load := false
     just --list
 
 @_cog:
-    pipx run --spec cogapp cog -r README.md
+    uv run --with cogapp cog -r README.md
 
 @_fmt:
     just --fmt --unstable
@@ -17,6 +17,8 @@ bootstrap *ARGS:
         echo ".env created"
         cp .env-dist .env
     fi
+
+    python -m pip install --upgrade pip uv
 
     just upgrade
 
@@ -32,15 +34,14 @@ bootstrap *ARGS:
     docker compose down {{ ARGS }}
 
 @lint *ARGS:
-    python -m pre_commit run {{ ARGS }} --all-files
+    uv run --with pre-commit-uv pre-commit run {{ ARGS }} --all-files
 
 @lock *ARGS:
     docker compose run \
         --no-deps \
         --rm \
         utility \
-            bash -c "python -m uv pip compile {{ ARGS }} ./requirements.in \
-                --resolver=backtracking \
+            bash -c "uv pip compile {{ ARGS }} ./requirements.in \
                 --output-file ./requirements.txt"
 
 @logs *ARGS:
@@ -77,7 +78,10 @@ bootstrap *ARGS:
     docker compose restart {{ ARGS }}
 
 @run *ARGS:
-    docker compose run --rm --no-deps utility {{ ARGS }}
+    docker compose run \
+        --no-deps \
+        --rm \
+        utility {{ ARGS }}
 
 @start *ARGS="--detach":
     just up {{ ARGS }}
@@ -89,7 +93,10 @@ bootstrap *ARGS:
     just logs --follow
 
 @test *ARGS:
-    docker compose run --rm --no-deps utility python -m pytest {{ ARGS }}
+    docker compose run \
+        --no-deps \
+        --rm \
+        utility python -m pytest {{ ARGS }}
 
 @up *ARGS:
     docker compose up {{ ARGS }}

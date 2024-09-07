@@ -39,7 +39,7 @@
 ## :wrench: Install
 
 ```shell
-$ django-admin startproject \
+$ uv run --with=django django-admin startproject \
     --extension=ini,py,toml,yaml,yml \
     --template=https://github.com/jefftriplett/django-startproject/archive/main.zip \
     example_project
