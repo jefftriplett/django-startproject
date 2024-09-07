@@ -1,13 +1,21 @@
+[project]
+name = "{{ project_name }}"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
+
 [tool.black]
 target-version = ["py312"]
 
 [tool.coverage.run]
 omit = [
-  "*/admin.py",
-  "*/manage.py",
-  "*/migrations/*",
-  "*/tests/*",
-  "conftest.py"
+    "*/admin.py",
+    "*/manage.py",
+    "*/migrations/*",
+    "*/tests/*",
+    "conftest.py",
 ]
 
 [tool.pytest.ini_options]
@@ -19,23 +27,23 @@ python_files = "test_*.py"
 [tool.ruff]
 # Exclude a variety of commonly ignored directories.
 exclude = [
-  ".bzr",
-  ".direnv",
-  ".eggs",
-  ".git",
-  ".github",
-  ".hg",
-  ".ruff_cache",
-  ".svn",
-  ".tox",
-  ".venv",
-  "__pypackages__",
-  "_build",
-  "build",
-  "dist",
-  "migrations",
-  "node_modules",
-  "static"
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".github",
+    ".hg",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "build",
+    "dist",
+    "migrations",
+    "node_modules",
+    "static",
 ]
 # Same as Black.
 line-length = 120
@@ -47,7 +55,7 @@ target-version = "py312"
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 # Allow autofix for all enabled rules (when `--fix`) is provided.
 fixable = ["A", "B", "C", "D", "E", "F"]
-ignore = ["E501", "E741"]  # temporary
+ignore = ["E501", "E741"]                # temporary
 per-file-ignores = {}
 # Enable Pyflakes `E` and `F` codes by default.
 select = ["E", "F"]
