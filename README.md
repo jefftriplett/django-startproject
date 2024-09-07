@@ -75,6 +75,9 @@ $ just console
 # Run Tests
 $ just test
 
+# Lint the project / run pre-commit by hand
+$ just lint
+
 # Re-build PIP requirements
 $ just lock
 ```
