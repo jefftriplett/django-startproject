@@ -124,7 +124,10 @@ Available recipes:
 👤 **Jeff Triplett**
 
 * Website: https://jefftriplett.com
+* Micro Blog: https://micro.webology.dev
 * Mastodon: [@webology@mastodon.social](https://mastodon.social/@webology)
+* Newsletter: [Django News Newsletter](https://django-news.com)
+* Job Board: [Django News Jobs](https://jobs.django-news.com)
 * Xwitter: [@webology](https://twitter.com/webology)
 * GitHub: [@jefftriplett](https://github.com/jefftriplett)
 
