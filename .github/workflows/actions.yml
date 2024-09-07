@@ -32,7 +32,8 @@ jobs:
 
       - name: Freeze our requirements
         run: |
-          uv pip compile requirements.in --output-file requirements.txt
+          uv pip compile ./src/github.com/${{ github.repository }}-git/requirements.in \
+            --output-file ./src/github.com/${{ github.repository }}-git/requirements.txt
 
       - name: Create a project based on our settings
         run: |
