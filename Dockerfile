@@ -13,7 +13,7 @@ COPY requirements.txt /tmp/requirements.txt
 
 # add ",sharing=locked" if release should block until builder is complete
 RUN --mount=type=cache,target=/root/.cache,sharing=locked,id=pip \
-    python -m pip install --upgrade pip uv
+    python -m pip install --upgrade pip uv just-bin
 
 RUN --mount=type=cache,target=/root/.cache,sharing=locked,id=pip \
     python -m uv pip install --system --requirement /tmp/requirements.txt
