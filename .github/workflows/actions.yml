@@ -30,11 +30,6 @@ jobs:
         run: |
           python -m pip install --upgrade pip uv
 
-      - name: Freeze our requirements
-        run: |
-          uv pip compile ./src/github.com/${{ github.repository }}-git/requirements.in \
-            --output-file ./src/github.com/${{ github.repository }}-git/requirements.txt
-
       - name: Create a project based on our settings
         run: |
           uv run --with=django \
@@ -42,6 +37,12 @@ jobs:
                 --extension=ini,py,toml,yaml,yml \
                 --template=./src/github.com/${{ github.repository }}-git/ \
                 test_project
+
+      - name: Freeze our requirements
+        run: |
+          cd test_project
+          uv pip compile requirements.in \
+            --output-file requirements.txt
 
       - name: Docker - Build image from starter project
         run: |
