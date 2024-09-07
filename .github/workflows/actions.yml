@@ -24,19 +24,23 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-          cache: 'pip'
+          cache: "pip"
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip uv
-          python -m uv pip install --system "django<5.0"
+
+      - name: Freeze our requirements
+        run: |
+          uv pip compile requirements.in --output-file requirements.txt
 
       - name: Create a project based on our settings
         run: |
-          django-admin startproject \
-              --extension=ini,py,yml \
-              --template=./src/github.com/${{ github.repository }}-git/ \
-              test_project
+          uv run --with=django \
+            django-admin startproject \
+                --extension=ini,py,toml,yaml,yml \
+                --template=./src/github.com/${{ github.repository }}-git/ \
+                test_project
 
       - name: Docker - Build image from starter project
         run: |
