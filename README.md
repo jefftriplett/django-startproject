@@ -9,7 +9,7 @@
 
 ## :triangular_flag_on_post: Features
 
-- Django 5.0
+- Django 5.1
 - Python 3.12
 - Docker Compose
 - uv
