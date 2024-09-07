@@ -126,10 +126,17 @@ Available recipes:
 * Website: https://jefftriplett.com
 * Micro Blog: https://micro.webology.dev
 * Mastodon: [@webology@mastodon.social](https://mastodon.social/@webology)
-* Newsletter: [Django News Newsletter](https://django-news.com)
-* Job Board: [Django News Jobs](https://jobs.django-news.com)
 * Xwitter: [@webology](https://twitter.com/webology)
 * GitHub: [@jefftriplett](https://github.com/jefftriplett)
+* Hire me: [revsys](https://www.revsys.com)
+
+## 🌟 Community Projects
+
+* [Django News Newsletter](https://django-news.com)
+* [Django News Jobs](https://jobs.django-news.com)
+* [Django Packages](https://djangopackages.org)
+* [DjangoCon US](https://djangocon.us)
+* [Awesome Django](https://awesomedjango.org)
 
 ## 🤝 Contributing
 
