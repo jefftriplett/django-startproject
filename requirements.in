@@ -1,7 +1,7 @@
-django-click
 Django<5.2
+django-click
 environs[django]
-psycopg2-binary
+psycopg[binary]
 whitenoise
 
 django-test-plus
