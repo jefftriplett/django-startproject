@@ -12,6 +12,7 @@
 - Django 5.1
 - Python 3.13
 - Docker Compose
+- Justfile recipes
 - Postgres auto updates
 - uv support
 
@@ -48,6 +49,10 @@ $ uv run --with=django django-admin startproject \
     --extension=ini,py,toml,yaml,yml \
     --template=https://github.com/jefftriplett/django-startproject/archive/main.zip \
     example_project
+
+$ cd example_project
+
+$ just bootstrap
 ```
 
 ## :rocket: Usage
