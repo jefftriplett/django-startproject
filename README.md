@@ -7,12 +7,16 @@
 
 > Django startproject template with batteries
 
-## :triangular_flag_on_post: Features
+## :triangular_flag_on_post: Core Features
 
 - Django 5.1
-- Python 3.12
+- Python 3.13
 - Docker Compose
-- uv
+- Postgres auto updates
+- uv support
+
+## :triangular_flag_on_post: Django Features
+
 - django-click
 - environs[django]
 - psycopg[binary]
@@ -20,6 +24,7 @@
 
 ## :shirt: Linting/auto-formatting
 
+- djade
 - django-upgrade
 - djhtml
 - pre-commit
