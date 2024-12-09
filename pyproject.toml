@@ -21,7 +21,7 @@ omit = [
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "config.settings"
 addopts = "--cov --nomigrations --reuse-db"
-norecursedirs = ".git* frontend requirements templates"
+norecursedirs = ".git* frontend media static templates"
 python_files = "test_*.py"
 
 [tool.ruff]
