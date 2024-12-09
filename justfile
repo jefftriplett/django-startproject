@@ -18,7 +18,11 @@ bootstrap *ARGS:
         echo ".env created"
     fi
 
-    python -m pip install --upgrade pip uv
+    if [ -n "${VIRTUAL_ENV-}" ]; then
+        python -m pip install --upgrade pip uv
+    else
+        echo "Skipping pip steps as VIRTUAL_ENV is not set"
+    fi
 
     if [ ! -f "requirements.txt" ]; then
         uv pip compile requirements.in --output-file requirements.txt
@@ -27,7 +31,9 @@ bootstrap *ARGS:
 
     just upgrade
 
-    just build {{ ARGS }} --force-rm
+    if [ -f "compose.yml" ]; then
+        just build {{ ARGS }} --pull
+    fi
 
 @build *ARGS:
     docker compose build {{ ARGS }}
