@@ -4,7 +4,13 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "django<5.2",
+    "django-click",
+    "environs[django]",
+    "psycopg[binary]",
+    "whitenoise",
+]
 
 [tool.black]
 target-version = ["py312"]
