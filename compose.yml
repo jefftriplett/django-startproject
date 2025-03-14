@@ -13,9 +13,9 @@ x-common-settings: &common-settings
   restart: on-failure
   volumes:
     - .:/src:cache
+    - /src/.venv
 
 services:
-
   db:
     environment:
       - "POSTGRES_HOST_AUTH_METHOD=trust"
@@ -36,7 +36,8 @@ services:
 
   web:
     <<: *common-settings
-    command: ["python", "-m", "manage", "runserver", "--skip-checks", "0.0.0.0:8000"]
+    command:
+      ["python", "-m", "manage", "runserver", "--skip-checks", "0.0.0.0:8000"]
     entrypoint: ["/src/compose-entrypoint.sh"]
     init: true
     ports:
