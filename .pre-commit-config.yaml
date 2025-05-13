@@ -40,11 +40,10 @@ repos:
         entry: djhtml --tabwidth 4
         alias: autoformat
 -   repo: https://github.com/adamchainz/djade-pre-commit
-    rev: v2.14.0
+    rev: "1.4.0"
     hooks:
-    -   id: pretty-format-toml
-        args:
-        - --autofix
+    -   id: djade
+        args: [--target-version, "5.2"]
 -   repo: https://github.com/asottile/blacken-docs
     rev: 1.19.1
     hooks:
