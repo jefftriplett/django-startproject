@@ -9,12 +9,13 @@
 
 ## :triangular_flag_on_post: Core Features
 
-- Django 5.1
+- Django 5.2
 - Python 3.13
-- Docker Compose
+- Docker Compose (I prefer Orbstack)
 - Justfile recipes
 - Postgres auto updates
 - uv support
+- pre-commit support
 
 ## :triangular_flag_on_post: Django Features
 
