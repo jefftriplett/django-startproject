@@ -1,4 +1,4 @@
-Django<5.2
+Django<6.0
 django-click
 environs[django]
 psycopg[binary]
