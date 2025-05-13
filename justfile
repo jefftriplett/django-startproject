@@ -4,14 +4,6 @@ set dotenv-load := false
 @_default:
     just --list
 
-# Generate README content with cogapp
-@_cog:
-    uv run --with cogapp cog -r README.md
-
-# Format justfile with unstable formatter
-@_fmt:
-    just --fmt --unstable
-
 # Initialize project with dependencies and environment
 bootstrap *ARGS:
     #!/usr/bin/env bash
@@ -29,7 +21,7 @@ bootstrap *ARGS:
     fi
 
     if [ ! -f "requirements.txt" ]; then
-        uv pip compile requirements.in --output-file requirements.txt
+        uv pip compile --output-file requirements.txt requirements.in
         echo "requirements.txt created"
     fi
 
@@ -43,13 +35,26 @@ bootstrap *ARGS:
 @build *ARGS:
     docker compose build {{ ARGS }}
 
+# Generate README content with cogapp
+[private]
+@cog:
+    uv run --with cogapp cog -r README.md
+
 # Open interactive bash console in utility container
 @console:
-    docker compose run --rm --no-deps utility /bin/bash
+    docker compose run \
+        --no-deps \
+        --rm \
+        utility /bin/bash
 
 # Stop and remove containers, networks
 @down *ARGS:
     docker compose down {{ ARGS }}
+
+# Format justfile with unstable formatter
+[private]
+@fmt:
+    just --fmt --unstable
 
 # Run pre-commit hooks on all files
 @lint *ARGS:
@@ -61,8 +66,9 @@ bootstrap *ARGS:
         --no-deps \
         --rm \
         utility \
-            bash -c "uv pip compile {{ ARGS }} ./requirements.in \
-                --output-file ./requirements.txt"
+            bash -c "uv pip compile {{ ARGS }} \
+                --output-file requirements.txt \
+                requirements.in"
 
 # Show logs from containers
 @logs *ARGS:
@@ -70,7 +76,11 @@ bootstrap *ARGS:
 
 # Run Django management commands
 @manage *ARGS:
-    docker compose run --rm --no-deps utility python -m manage {{ ARGS }}
+    docker compose run \
+        --no-deps \
+        --rm \
+        utility \
+            python -m manage {{ ARGS }}
 
 # Dump database to file
 @pg_dump file='db.dump':
