@@ -1,56 +1,52 @@
 default_language_version:
-  python: python3.12
-
+    python: python3.12
 repos:
-  - repo: https://github.com/pre-commit/pre-commit-hooks
+-   repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
     hooks:
-      - id: check-added-large-files
-      - id: check-case-conflict
-      - id: check-json
-      - id: check-merge-conflict
-      - id: check-symlinks
-      - id: check-toml
-      - id: check-yaml
-      - id: end-of-file-fixer
-      - id: trailing-whitespace
-  - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.6.9
+    -   id: check-added-large-files
+    -   id: check-case-conflict
+    -   id: check-json
+    -   id: check-merge-conflict
+    -   id: check-symlinks
+    -   id: check-toml
+    -   id: check-yaml
+    -   id: end-of-file-fixer
+    -   id: trailing-whitespace
+-   repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.11.9
     hooks:
-      - id: ruff
-        args: [--fix]
-      - id: ruff-format
-  - repo: https://github.com/asottile/pyupgrade
-    rev: v3.18.0
+    -   id: ruff
+        args:
+        - --fix
+    -   id: ruff-format
+-   repo: https://github.com/asottile/pyupgrade
+    rev: v3.19.1
     hooks:
-      - id: pyupgrade
-        args: [--py312-plus]
-  - repo: https://github.com/adamchainz/django-upgrade
-    rev: 1.22.1
+    -   id: pyupgrade
+        args:
+        - --py312-plus
+-   repo: https://github.com/adamchainz/django-upgrade
+    rev: 1.24.0
     hooks:
-    - id: django-upgrade
-      args: [--target-version, "5.0"]
-  - repo: https://github.com/rtts/djhtml
-    rev: '3.0.6'
+    -   id: django-upgrade
+        args:
+        - --target-version
+        - '5.0'
+-   repo: https://github.com/rtts/djhtml
+    rev: 3.0.7
     hooks:
-      - id: djhtml
+    -   id: djhtml
         entry: djhtml --tabwidth 4
         alias: autoformat
-      # - id: djcss
-      #   alias: autoformat
-      # - id: djjs
-      #   alias: autoformat
-  - repo: https://github.com/adamchainz/djade-pre-commit
-    rev: ""
-    hooks:
-      - id: djade
-        args: [--target-version, "5.1"]
+-   repo: https://github.com/adamchainz/djade-pre-commit
     rev: v2.14.0
     hooks:
-      - id: pretty-format-toml
-        args: [--autofix]
-  - repo: https://github.com/asottile/blacken-docs
-    rev: 1.19.0
+    -   id: pretty-format-toml
+        args:
+        - --autofix
+-   repo: https://github.com/asottile/blacken-docs
+    rev: 1.19.1
     hooks:
-      - id: blacken-docs
+    -   id: blacken-docs
         alias: autoformat
