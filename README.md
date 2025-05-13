@@ -109,24 +109,24 @@ cog.out(
 ]]] -->
 ```
 Available recipes:
-    bootstrap *ARGS
-    build *ARGS
-    console
-    down *ARGS
-    lint *ARGS
-    lock *ARGS
-    logs *ARGS
-    manage *ARGS
-    pg_dump file='db.dump'    # dump database to file
-    pg_restore file='db.dump' # restore database dump from file
-    restart *ARGS
-    run *ARGS
-    start *ARGS="--detach"
-    stop *ARGS
-    tail
-    test *ARGS
-    up *ARGS
-    upgrade
+    bootstrap *ARGS           # Initialize project with dependencies and environment
+    build *ARGS               # Build Docker containers with optional args
+    console                   # Open interactive bash console in utility container
+    down *ARGS                # Stop and remove containers, networks
+    lint *ARGS                # Run pre-commit hooks on all files
+    lock *ARGS                # Compile requirements.in to requirements.txt
+    logs *ARGS                # Show logs from containers
+    manage *ARGS              # Run Django management commands
+    pg_dump file='db.dump'    # Dump database to file
+    pg_restore file='db.dump' # Restore database dump from file
+    restart *ARGS             # Restart containers
+    run *ARGS                 # Run command in utility container
+    start *ARGS="--detach"    # Start services in detached mode by default
+    stop *ARGS                # Stop services (alias for down)
+    tail                      # Show and follow logs
+    test *ARGS                # Run pytest with arguments
+    up *ARGS                  # Start containers
+    upgrade                   # Upgrade dependencies and lock
 ```
 <!-- [[[end]]] -->
 
