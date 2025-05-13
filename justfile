@@ -38,7 +38,7 @@ bootstrap *ARGS:
 # Generate README content with cogapp
 [private]
 @cog:
-    uv run --with cogapp cog -r README.md
+    uv tool run --from cogapp cog -r README.md
 
 # Open interactive bash console in utility container
 @console:
@@ -58,7 +58,7 @@ bootstrap *ARGS:
 
 # Run pre-commit hooks on all files
 @lint *ARGS:
-    uv run --with pre-commit-uv pre-commit run {{ ARGS }} --all-files
+    uv tool run --from pre-commit-uv pre-commit run {{ ARGS }} --all-files
 
 # Compile requirements.in to requirements.txt
 @lock *ARGS:
