@@ -3,9 +3,9 @@ name = "{{ project_name }}"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.13"
 dependencies = [
-    "django<5.2",
+    "django<6.0",
     "django-click",
     "environs[django]",
     "psycopg[binary]",
@@ -13,7 +13,7 @@ dependencies = [
 ]
 
 [tool.black]
-target-version = ["py312"]
+target-version = ["py313"]
 
 [tool.coverage.run]
 omit = [
@@ -53,8 +53,8 @@ exclude = [
 ]
 # Same as Black.
 line-length = 120
-# Assume Python 3.12.
-target-version = "py312"
+# Assume Python 3.13.
+target-version = "py313"
 
 [tool.ruff.lint]
 # Allow unused variables when underscore-prefixed.
