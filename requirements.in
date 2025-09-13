@@ -1,5 +1,6 @@
-Django<6.0
 django-click
+django-prodserver[gunicorn]
+Django<6.0
 environs[django]
 psycopg[binary]
 whitenoise

@@ -7,6 +7,7 @@ requires-python = ">=3.13"
 dependencies = [
     "django<6.0",
     "django-click",
+    "django-prodserver[gunicorn]",
     "environs[django]",
     "psycopg[binary]",
     "whitenoise",
@@ -53,7 +54,6 @@ exclude = [
 ]
 # Same as Black.
 line-length = 120
-# Assume Python 3.13.
 target-version = "py313"
 
 [tool.ruff.lint]
