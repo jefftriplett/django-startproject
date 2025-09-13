@@ -46,7 +46,9 @@ INSTALLED_APPS = [
 
 # Third-party apps
 
-INSTALLED_APPS += []
+INSTALLED_APPS += [
+    "django_prodserver",
+]
 
 # Our apps
 
@@ -156,3 +158,10 @@ CACHES = {"default": env.dj_cache_url("CACHE_URL", default="locmem://")}
 ADMIN_URL = env.str("ADMIN_URL", default="admin/")
 
 SITE_ID = 1
+
+PRODUCTION_PROCESSES = {
+    "web": {
+        "BACKEND": "django_prodserver.backends.gunicorn.GunicornServer",
+        "ARGS": {"bind": "0.0.0.0:8000", "workers": "2"},
+    }
+}
