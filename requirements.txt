@@ -6,7 +6,7 @@ cfgv==3.4.0
     # via pre-commit
 click==8.2.1
     # via django-click
-coverage==7.9.2
+coverage[toml]==7.9.2
     # via pytest-cov
 distlib==0.4.0
     # via virtualenv
@@ -14,7 +14,7 @@ dj-database-url==3.0.1
     # via environs
 dj-email-url==1.0.6
     # via environs
-django==5.2.4
+django==5.2.6
     # via
     #   -r requirements.in
     #   dj-database-url
@@ -24,11 +24,11 @@ django-cache-url==3.4.5
     # via environs
 django-click==2.4.1
     # via -r requirements.in
-django-prodserver==2.2.0
+django-prodserver[gunicorn]==2.2.0
     # via -r requirements.in
 django-test-plus==2.3.0
     # via -r requirements.in
-environs==14.2.0
+environs[django]==14.2.0
     # via -r requirements.in
 filelock==3.18.0
     # via virtualenv
@@ -56,7 +56,7 @@ pluggy==1.6.0
     #   pytest-cov
 pre-commit==4.2.0
     # via -r requirements.in
-psycopg==3.2.9
+psycopg[binary]==3.2.9
     # via -r requirements.in
 psycopg-binary==3.2.9
     # via psycopg
@@ -77,8 +77,6 @@ pyyaml==6.0.2
     # via pre-commit
 sqlparse==0.5.3
     # via django
-typing-extensions==4.15.0
-    # via psycopg
 virtualenv==20.31.2
     # via pre-commit
 whitenoise==6.9.0
