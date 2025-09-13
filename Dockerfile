@@ -4,7 +4,7 @@
 # ------------------------------------------------------------
 # Stage 1: Base/builder layer - Setup Python environment
 # ------------------------------------------------------------
-FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim AS builder
+FROM ghcr.io/astral-sh/uv:python3.13-bookworm-slim AS builder
 
 # Configure environment variables
 ENV UV_COMPILE_BYTECODE=1
@@ -57,4 +57,4 @@ RUN DATABASE_URL=sqlite://:memory: SECRET_KEY=build-key uv run --frozen -m manag
 # Default command runs Gunicorn WSGI server
 # - Binds to all interfaces on port 8000
 # - Uses 2 worker processes for handling requests
-CMD ["uv", "run", "--frozen", "gunicorn", "--bind", ":8000", "--workers", "2", "config.wsgi"]
+CMD ["uv", "run", "--frozen", "-m", "manage", "prodserver", "web"]

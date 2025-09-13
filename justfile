@@ -58,17 +58,14 @@ bootstrap *ARGS:
 
 # Run pre-commit hooks on all files
 @lint *ARGS:
-    uv tool run --from pre-commit-uv pre-commit run {{ ARGS }} --all-files
+    uv --quiet tool run prek {{ ARGS }} --all-files
+
+@lint-autoupdate *ARGS:
+    uv --quiet tool run prek autoupdate
 
 # Compile requirements.in to requirements.txt
 @lock *ARGS:
-    docker compose run \
-        --no-deps \
-        --rm \
-        utility \
-            bash -c "uv pip compile {{ ARGS }} \
-                --output-file requirements.txt \
-                requirements.in"
+    uv lock {{ ARGS }}
 
 # Show logs from containers
 @logs *ARGS:
