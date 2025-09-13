@@ -1,5 +1,5 @@
 default_language_version:
-    python: python3.12
+    python: python3.13
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
@@ -25,7 +25,7 @@ repos:
     hooks:
     -   id: pyupgrade
         args:
-        - --py312-plus
+        - --py313-plus
 -   repo: https://github.com/adamchainz/django-upgrade
     rev: 1.24.0
     hooks:
