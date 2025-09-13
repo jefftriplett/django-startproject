@@ -26,6 +26,7 @@ services:
       retries: 3
     image: "pgautoupgrade/pgautoupgrade:latest"
     init: true
+    user: postgres
     volumes:
       - .:/src:cache
       - postgres-data:/var/lib/postgresql/data/
