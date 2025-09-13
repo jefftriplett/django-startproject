@@ -32,11 +32,26 @@ services:
 
   utility:
     <<: *common-settings
+    command: [
+      "uv",
+      "run",
+      "-m",
+      "manage",
+      "--version"
+    ]
     tty: true
 
   web:
     <<: *common-settings
-    command: ["uv", "run", "-m", "manage", "devserver", "--skip-checks", "0.0.0.0:8000"]
+    command: [
+      "uv",
+      "run",
+      "-m",
+      "manage",
+      "devserver",
+      "--skip-checks",
+      "0.0.0.0:8000"
+    ]
     entrypoint: ["/src/compose-entrypoint.sh"]
     init: true
     ports:
