@@ -52,4 +52,4 @@ jobs:
       - name: Docker - Test generated starter project
         run: |
           cd test_project
-          docker compose run --rm utility pytest
+          docker compose run --rm utility uv tool run pytest
