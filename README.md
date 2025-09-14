@@ -15,7 +15,7 @@
 - Justfile recipes
 - Postgres auto updates
 - uv support
-- pre-commit support
+- pre-commit support via prek
 
 ## :triangular_flag_on_post: Django Features
 
