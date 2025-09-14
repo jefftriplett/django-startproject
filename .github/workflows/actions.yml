@@ -20,15 +20,14 @@ jobs:
           fetch-depth: 1
           path: ./src/github.com/${{ github.repository }}-git
 
-      - name: Set up Python 3.12
-        uses: actions/setup-python@v5
+      - name: Enable caching
+        uses: astral-sh/setup-uv@v5
         with:
-          python-version: "3.12"
-          cache: "pip"
+          enable-cache: true
 
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip uv
+          uv sync --all-extras --dev --frozen --no-editable --no-install-project
 
       - name: Create a project based on our settings
         run: |
@@ -52,4 +51,4 @@ jobs:
       - name: Docker - Test generated starter project
         run: |
           cd test_project
-          docker compose run --rm utility uv tool run pytest
+          docker compose run --rm utility uv run pytest
