@@ -20,6 +20,7 @@
 ## :triangular_flag_on_post: Django Features
 
 - django-click
+- django-prodserver[gunicorn]
 - environs[django]
 - psycopg[binary]
 - whitenoise
@@ -89,7 +90,7 @@ $ just test
 # Lint the project / run pre-commit by hand
 $ just lint
 
-# Re-build PIP requirements
+# Lock dependencies with uv
 $ just lock
 ```
 
