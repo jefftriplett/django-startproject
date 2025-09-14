@@ -38,11 +38,10 @@ jobs:
                 --template=./src/github.com/${{ github.repository }}-git/ \
                 test_project
 
-      - name: Freeze our requirements
+      - name: Lock dependencies with uv
         run: |
           cd test_project
-          uv pip compile requirements.in \
-            --output-file requirements.txt
+          uv lock
 
       - name: Docker - Build image from starter project
         run: |
