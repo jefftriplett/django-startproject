@@ -27,12 +27,14 @@
 
 ## :shirt: Linting/auto-formatting
 
-- djade
-- django-upgrade
-- djhtml
 - pre-commit (using prek)
-- pyupgrade
-- ruff
+  - Standard hooks (check-added-large-files, check-json, check-toml, check-yaml, etc.)
+  - ruff (linting and formatting)
+  - pyupgrade (Python 3.13+)
+  - django-upgrade (Django 5.0+)
+  - djhtml (Django template formatting)
+  - djade (Django 5.2 compatibility)
+  - blacken-docs (format code in documentation)
 
 ### :green_heart: CI
 
