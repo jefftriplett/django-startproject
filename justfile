@@ -60,10 +60,11 @@ bootstrap *ARGS:
 @lint *ARGS:
     uv --quiet tool run prek {{ ARGS }} --all-files
 
+# Update pre-commit hooks to latest versions
 @lint-autoupdate *ARGS:
     uv --quiet tool run prek autoupdate
 
-# Compile requirements.in to requirements.txt
+# Lock dependencies with uv
 @lock *ARGS:
     uv lock {{ ARGS }}
 

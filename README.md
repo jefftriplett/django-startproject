@@ -114,7 +114,8 @@ Available recipes:
     console                   # Open interactive bash console in utility container
     down *ARGS                # Stop and remove containers, networks
     lint *ARGS                # Run pre-commit hooks on all files
-    lock *ARGS                # Compile requirements.in to requirements.txt
+    lint-autoupdate *ARGS     # Update pre-commit hooks to latest versions
+    lock *ARGS                # Lock dependencies with uv
     logs *ARGS                # Show logs from containers
     manage *ARGS              # Run Django management commands
     pg_dump file='db.dump'    # Dump database to file
