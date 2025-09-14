@@ -21,7 +21,7 @@ bootstrap *ARGS:
     fi
 
     if [ ! -f "uv.lock" ]; then
-        uv lock
+        just lock
         echo "uv.lock created"
     fi
 
