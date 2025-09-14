@@ -30,7 +30,7 @@
 - djade
 - django-upgrade
 - djhtml
-- pre-commit
+- pre-commit (using prek)
 - pyupgrade
 - ruff
 
