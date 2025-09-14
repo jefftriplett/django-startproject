@@ -20,9 +20,9 @@ bootstrap *ARGS:
         echo "Skipping pip steps as VIRTUAL_ENV is not set"
     fi
 
-    if [ ! -f "requirements.txt" ]; then
-        uv pip compile --output-file requirements.txt requirements.in
-        echo "requirements.txt created"
+    if [ ! -f "uv.lock" ]; then
+        uv lock
+        echo "uv.lock created"
     fi
 
     just upgrade
