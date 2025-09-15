@@ -41,7 +41,6 @@
 - django-test-plus
 - model-bakery
 - pytest
-- pytest-cov
 - pytest-django
 
 ### 🏠 [Homepage](https://github.com/jefftriplett/django-startproject)
