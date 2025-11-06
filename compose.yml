@@ -24,7 +24,7 @@ services:
       interval: 10s
       timeout: 3s
       retries: 3
-    image: "pgautoupgrade/pgautoupgrade:latest"
+    image: "pgautoupgrade/pgautoupgrade:17-alpine"
     init: true
     user: postgres
     volumes:
