@@ -78,7 +78,7 @@ bootstrap *ARGS:
         --no-deps \
         --rm \
         utility \
-            python -m manage {{ ARGS }}
+            uv run -m manage {{ ARGS }}
 
 # Dump database to file
 @pg_dump file='db.dump':
@@ -132,7 +132,7 @@ bootstrap *ARGS:
     docker compose run \
         --no-deps \
         --rm \
-        utility python -m pytest {{ ARGS }}
+        utility uv run pytest {{ ARGS }}
 
 # Start containers
 @up *ARGS:
