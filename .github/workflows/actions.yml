@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 env:
   DOCKER_BUILDKIT: "1"
@@ -52,4 +53,4 @@ jobs:
       - name: Docker - Test generated starter project
         run: |
           cd test_project
-          docker compose run --rm utility uv run pytest
+          docker compose run --rm utility uv run -m pytest
