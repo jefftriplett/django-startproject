@@ -47,7 +47,14 @@ INSTALLED_APPS = [
 # Third-party apps
 
 INSTALLED_APPS += [
+    "django_browser_reload",
     "django_prodserver",
+    "django_tailwind_cli",
+    "health_check",
+    "health_check.db",
+    "health_check.cache",
+    "health_check.storage",
+    "health_check.contrib.migrations",
 ]
 
 # Our apps
@@ -63,6 +70,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -159,9 +167,36 @@ ADMIN_URL = env.str("ADMIN_URL", default="admin/")
 
 SITE_ID = 1
 
+# Tailwind CSS settings
+
+TAILWIND_CLI_AUTOMATIC_DOWNLOAD = env.bool("TAILWIND_CLI_AUTOMATIC_DOWNLOAD", default=True)
+TAILWIND_CLI_DIST_CSS = env.str("TAILWIND_CLI_DIST_CSS", default="css/tailwind.css")
+TAILWIND_CLI_SRC_CSS = env.str("TAILWIND_CLI_SRC_CSS", default="frontend/index.css")
+TAILWIND_CLI_VERSION = env.str("TAILWIND_CLI_VERSION", default="4.1.18")
+
+# Django-Q2 settings
+
+Q_CLUSTER = {
+    "bulk": 10,
+    "max_attempts": 1,
+    "name": "{{ project_name }}",
+    "orm": "default",
+    "queue_limit": 50,
+    "recycle": 500,
+    "retry": 120,
+    "timeout": 60,
+    "workers": 2,
+}
+
+# Django Prodserver settings
+
 PRODUCTION_PROCESSES = {
     "web": {
         "BACKEND": "django_prodserver.backends.gunicorn.GunicornServer",
         "ARGS": {"bind": "0.0.0.0:8000", "workers": "2"},
-    }
+    },
+    "worker": {
+        "BACKEND": "django_prodserver.backends.django_q2.DjangoQ2Worker",
+        "ARGS": {},
+    },
 }

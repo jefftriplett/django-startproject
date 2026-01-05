@@ -35,17 +35,19 @@ bootstrap *ARGS:
 @build *ARGS:
     docker compose build {{ ARGS }}
 
-# Generate README content with cogapp
-[private]
-@cog:
-    uv tool run --from cogapp cog -r README.md
-
 # Open interactive bash console in utility container
 @console:
     docker compose run \
         --no-deps \
         --rm \
         utility /bin/bash
+
+# Open interactive bash console in database container
+@console-db:
+    docker compose run \
+        --no-deps \
+        --rm \
+        db /bin/bash
 
 # Stop and remove containers, networks
 @down *ARGS:
@@ -72,6 +74,10 @@ bootstrap *ARGS:
 @logs *ARGS:
     docker compose logs {{ ARGS }}
 
+# Create Django database migration files
+@makemigrations *ARGS:
+    just manage makemigrations {{ ARGS }}
+
 # Run Django management commands
 @manage *ARGS:
     docker compose run \
@@ -79,6 +85,10 @@ bootstrap *ARGS:
         --rm \
         utility \
             uv run -m manage {{ ARGS }}
+
+# Apply Django database migrations
+@migrate *ARGS:
+    just manage migrate {{ ARGS }}
 
 # Dump database to file
 @pg_dump file='db.dump':
@@ -104,6 +114,10 @@ bootstrap *ARGS:
             --verbose \
             /src/{{ file }}
 
+# Pull Docker images
+@pull *ARGS:
+    docker compose pull {{ ARGS }}
+
 # Restart containers
 @restart *ARGS:
     docker compose restart {{ ARGS }}
@@ -119,9 +133,9 @@ bootstrap *ARGS:
 @start *ARGS="--detach":
     just up {{ ARGS }}
 
-# Stop services (alias for down)
+# Stop services
 @stop *ARGS:
-    just down {{ ARGS }}
+    docker compose stop {{ ARGS }}
 
 # Show and follow logs
 @tail:
@@ -138,6 +152,15 @@ bootstrap *ARGS:
 @up *ARGS:
     docker compose up {{ ARGS }}
 
+# Update dependencies and pre-commit hooks
+@update:
+    just upgrade
+    just lint-autoupdate
+
 # Upgrade dependencies and lock
 @upgrade:
     just lock --upgrade
+
+# Watch for file changes and rebuild Docker services
+@watch *ARGS:
+    docker compose watch {{ ARGS }}
