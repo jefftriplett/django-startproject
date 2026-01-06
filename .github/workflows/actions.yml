@@ -47,6 +47,11 @@ jobs:
                 --template=./src/github.com/${{ github.repository }}-git/ \
                 test_project
 
+      - name: Bootstrap project
+        run: |
+          cd test_project
+          cp .env-dist .env
+
       - name: Lock dependencies with uv
         run: |
           cd test_project
