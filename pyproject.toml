@@ -1,17 +1,18 @@
 [project]
 name = "{{ project_name }}"
-version = "0.1.0"
+version = "2026.1.1"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "blessed>=1.25.0",
-    "django<6.0",
+    "blessed",
     "django-browser-reload",
     "django-click",
     "django-health-check",
-    "django-prodserver[django-q2,gunicorn]>=2.1.1",
-    "django-tailwind-cli>=4.5.1",
+    "django-prodserver[gunicorn]",
+    "django-q2",
+    "django-tailwind-cli",
+    "django<6.0",
     "environs[django]",
     "psycopg[binary]",
     "whitenoise",
@@ -23,6 +24,25 @@ dev = [
     "model-bakery",
     "pytest",
     "pytest-django",
+]
+
+[tool.bumpver]
+commit = true
+commit_message = ":bookmark: bump version {old_version} -> {new_version}"
+current_version = "2026.1.1"
+push = false  # disabled for GitHub Actions
+tag = true
+version_pattern = "YYYY.MM.INC1"
+
+[tool.uv]
+package = false
+
+[tool.bumpver.file_patterns]
+"config/__init__.py" = [
+    '__version__ = "{version}"',
+]
+"pyproject.toml" = [
+  'version = "{version}"'
 ]
 
 [tool.black]
