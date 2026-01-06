@@ -1,7 +1,7 @@
 x-common-settings: &common-settings
   build:
     context: .
-    dockerfile: .dockerfiles/Dockerfile
+    dockerfile: Dockerfile
     target: release
   depends_on:
     db:
