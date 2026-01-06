@@ -5,30 +5,39 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - '.github/workflows/**'
+  workflow_dispatch:
 
 env:
   DOCKER_BUILDKIT: "1"
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     name: Tests with Python
 
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
+        ports: ['5432:5432']
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 1
           path: ./src/github.com/${{ github.repository }}-git
 
       - name: Enable caching
-        uses: astral-sh/setup-uv@v5
-        # with:
-        #   enable-cache: true
-
-      # - name: Install dependencies
-      #   run: |
-      #     uv sync --all-extras --dev
-      #     # uv sync --all-extras --dev --frozen --no-editable --no-install-project
+        uses: astral-sh/setup-uv@v7
+        with:
+          enable-cache: true
+          python-version: "3.13"
 
       - name: Create a project based on our settings
         run: |
@@ -37,6 +46,11 @@ jobs:
                 --extension=ini,py,toml,yaml,yml \
                 --template=./src/github.com/${{ github.repository }}-git/ \
                 test_project
+
+      - name: Bootstrap project
+        run: |
+          cd test_project
+          cp .env-dist .env
 
       - name: Lock dependencies with uv
         run: |
@@ -50,6 +64,9 @@ jobs:
           docker compose build
 
       - name: Docker - Test generated starter project
+        env:
+          DATABASE_URL: 'postgres://postgres:postgres@localhost:${{ job.services.postgres.ports[5432] }}/postgres'
+          SECRET_KEY: 'for-testing'
         run: |
           cd test_project
-          docker compose run --rm utility uv run pytest
+          docker compose run --rm utility uv run -m pytest

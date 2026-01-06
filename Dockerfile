@@ -1,23 +1,22 @@
-# syntax = docker/dockerfile:experimental
-# Uses Docker BuildKit for improved caching and build performance
-
 # ------------------------------------------------------------
 # Stage 1: Base/builder layer - Setup Python environment
 # ------------------------------------------------------------
 FROM ghcr.io/astral-sh/uv:python3.13-bookworm-slim AS builder
 
 # Configure environment variables
-ENV UV_COMPILE_BYTECODE=1
+ENV UV_SYSTEM_PYTHON=1
 ENV UV_LINK_MODE=copy
-ENV UV_SYSTEM_PYTHON 1
 
 # Set working directory
 WORKDIR /src/
 
-# Install curl for health checks
-RUN apt-get update && apt-get install -y --no-install-recommends \
+# Install curl for health checks and procps for pgrep
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    apt-get update && apt-get install -y --no-install-recommends \
     curl \
-    && rm -rf /var/lib/apt/lists/*
+    procps \
+    wget
 
 # Install Python dependencies using uv
 # Mount only the necessary files (dependency definitions)
@@ -39,23 +38,36 @@ FROM builder AS release
 # This allows for graceful shutdown and proper cleanup
 STOPSIGNAL SIGINT
 
-ADD . /src/
+COPY . /src/
 
-# Copy the uv cache from builder stage to avoid re-downloading packages
+# Copy the uv cache from builder stage and compile bytecode once
 RUN --mount=type=cache,target=/root/.cache/uv \
-    uv sync --frozen
+    uv sync --frozen --compile
 
 # Download the TailwindCSS CLI
 # Using SQLite memory database and dummy secret key during build
-# RUN DATABASE_URL=sqlite://:memory: SECRET_KEY=build-key uv run --frozen -m manage tailwind --skip-checks download_cli
+RUN DATABASE_URL=sqlite://:memory: SECRET_KEY=build-key uv run --frozen -m manage tailwind --skip-checks download_cli
 
 # Build the TailwindCSS styles
-# RUN DATABASE_URL=sqlite://:memory: SECRET_KEY=build-key uv run --frozen -m manage tailwind --skip-checks build
+RUN DATABASE_URL=sqlite://:memory: SECRET_KEY=build-key uv run --frozen -m manage tailwind --skip-checks build
 
 # Collect static files for production serving
-RUN DATABASE_URL=sqlite://:memory: SECRET_KEY=build-key uv run --frozen -m manage collectstatic --noinput --clear
+RUN DATABASE_URL=sqlite://:memory: SECRET_KEY=build-key uv run --frozen -m manage collectstatic --noinput
 
-# Default command runs Gunicorn WSGI server
-# - Binds to all interfaces on port 8000
-# - Uses 2 worker processes for handling requests
-CMD ["uv", "run", "--frozen", "-m", "manage", "prodserver", "web"]
+CMD ["/src/start-web.sh"]
+
+# Worker stage
+FROM release AS worker
+
+HEALTHCHECK --interval=60s --timeout=5s --start-period=10s --retries=3 \
+    CMD ["/src/healthcheck-worker.sh"]
+
+CMD ["/src/start-worker.sh"]
+
+# Web stage (default)
+FROM release AS web
+
+HEALTHCHECK --interval=60s --timeout=10s --start-period=40s --retries=3 \
+    CMD ["/src/healthcheck-web.sh"]
+
+CMD ["/src/start-web.sh"]

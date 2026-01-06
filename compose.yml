@@ -1,7 +1,7 @@
 x-common-settings: &common-settings
   build:
     context: .
-    dockerfile: ./Dockerfile
+    dockerfile: Dockerfile
     target: release
   depends_on:
     db:
@@ -10,9 +10,11 @@ x-common-settings: &common-settings
     - "ALLOWED_HOSTS=*"
     - "DATABASE_URL=postgres://postgres@db/postgres"
     - "DJANGO_DEBUG=true"
-  restart: on-failure
+  env_file: .env
+  tty: true
   volumes:
     - .:/src:cache
+    - django-tailwind-cli-data:/src/.django_tailwind_cli
 
 services:
 
@@ -20,7 +22,12 @@ services:
     environment:
       - "POSTGRES_HOST_AUTH_METHOD=trust"
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready", "-d", "postgres"]
+      test: [
+        "CMD-SHELL",
+        "pg_isready",
+        "-d",
+        "postgres"
+      ]
       interval: 10s
       timeout: 3s
       retries: 3
@@ -31,6 +38,22 @@ services:
       - .:/src:cache
       - postgres-data:/var/lib/postgresql/data/
 
+  worker:
+    <<: *common-settings
+    command: ["/src/start-worker.sh"]
+    healthcheck:
+      test: ["CMD-SHELL", "./healthcheck-worker.sh"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    init: true
+
+  tailwind:
+    <<: *common-settings
+    command: ["/src/start-tailwind.sh"]
+    init: true
+
   utility:
     <<: *common-settings
     command: [
@@ -40,24 +63,21 @@ services:
       "manage",
       "--version"
     ]
-    tty: true
+    entrypoint: ["/src/compose-entrypoint.sh"]
 
   web:
     <<: *common-settings
-    command: [
-      "uv",
-      "run",
-      "-m",
-      "manage",
-      "devserver",
-      "--skip-checks",
-      "0.0.0.0:8000"
-    ]
-    entrypoint: ["/src/compose-entrypoint.sh"]
+    command: ["/src/start-dev.sh"]
+    healthcheck:
+      test: ["CMD-SHELL", "./healthcheck-web.sh"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
     init: true
     ports:
       - "8000:8000"
-    tty: true
 
 volumes:
+  django-tailwind-cli-data:
   postgres-data:

@@ -7,6 +7,11 @@
 
 > Django startproject template with batteries
 
+> [!NOTE]
+> **Modern Django Development Stack** 🚀
+>
+> This is a production-ready Django project template featuring the latest Python 3.13, Django 5.2, and modern tooling including **uv** for blazing-fast dependency management, **Docker Compose** for containerization, and **Justfile** for streamlined commands. Perfect for starting new projects or learning best practices with batteries included!
+
 ## :triangular_flag_on_post: Core Features
 
 - Django 5.2
