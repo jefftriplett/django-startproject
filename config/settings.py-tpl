@@ -52,10 +52,6 @@ INSTALLED_APPS += [
     "django_q",
     "django_tailwind_cli",
     "health_check",
-    "health_check.db",
-    "health_check.cache",
-    "health_check.storage",
-    "health_check.contrib.migrations",
 ]
 
 # Our apps

@@ -4,10 +4,21 @@ from django.contrib import admin
 from django.urls import include
 from django.urls import path
 
+from health_check.views import HealthCheckView
+
 
 urlpatterns = [
     path(settings.ADMIN_URL, admin.site.urls),
-    path("health/", include("health_check.urls")),
+    path(
+        "health/",
+        HealthCheckView.as_view(
+            checks=[
+                "health_check.Cache",
+                "health_check.Database",
+                "health_check.Storage",
+            ]
+        ),
+    ),
 ]
 
 if settings.DEBUG:

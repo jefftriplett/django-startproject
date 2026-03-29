@@ -8,7 +8,7 @@ dependencies = [
     "blessed",
     "django-browser-reload",
     "django-click",
-    "django-health-check",
+    "django-health-check>=4.0.0",
     "django-prodserver[gunicorn]",
     "django-q2",
     "django-tailwind-cli",
