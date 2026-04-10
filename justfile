@@ -32,7 +32,20 @@ bootstrap *ARGS:
     fi
 
 # Build Docker containers with optional args
-@build *ARGS:
+build *ARGS:
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    if [ ! -f ".env" ]; then
+        cp .env-dist .env
+        echo ".env created"
+    fi
+
+    if [ ! -f "uv.lock" ]; then
+        just lock
+        echo "uv.lock created"
+    fi
+
     docker compose build {{ ARGS }}
 
 # Open interactive bash console in utility container
