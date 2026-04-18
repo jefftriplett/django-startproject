@@ -10,6 +10,9 @@ x-common-settings: &common-settings
     - "ALLOWED_HOSTS=*"
     - "DATABASE_URL=postgres://postgres@db/postgres"
     - "DJANGO_DEBUG=true"
+    # Keep the project venv OUT of /src so the host bind-mount below can't
+    # shadow it. Otherwise `uv run` rebuilds the venv on every invocation.
+    - "UV_PROJECT_ENVIRONMENT=/opt/venv"
   env_file: .env
   tty: true
   volumes:
@@ -22,15 +25,16 @@ services:
     environment:
       - "POSTGRES_HOST_AUTH_METHOD=trust"
     healthcheck:
-      test: [
-        "CMD-SHELL",
-        "pg_isready",
-        "-d",
-        "postgres"
-      ]
-      interval: 10s
+      # CMD-SHELL takes a single command string; passing args as extra list
+      # items silently drops them. Use the full command as one string.
+      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres -q"]
+      # `start_interval` (Docker 25+) lets us poll aggressively during boot
+      # and relax once the container is healthy.
+      interval: 30s
+      start_interval: 1s
+      start_period: 20s
       timeout: 3s
-      retries: 3
+      retries: 5
     image: "pgautoupgrade/pgautoupgrade:17-alpine"
     init: true
     user: postgres
@@ -42,11 +46,12 @@ services:
     <<: *common-settings
     command: ["/src/start-worker.sh"]
     healthcheck:
-      test: ["CMD-SHELL", "./healthcheck-worker.sh"]
+      test: ["CMD-SHELL", "/src/healthcheck-worker.sh"]
       interval: 30s
-      timeout: 5s
+      start_interval: 3s
+      start_period: 60s
+      timeout: 10s
       retries: 3
-      start_period: 10s
     init: true
 
   tailwind:
@@ -59,6 +64,7 @@ services:
     command: [
       "uv",
       "run",
+      "--no-sync",
       "-m",
       "manage",
       "--version"
@@ -69,11 +75,12 @@ services:
     <<: *common-settings
     command: ["/src/start-dev.sh"]
     healthcheck:
-      test: ["CMD-SHELL", "./healthcheck-web.sh"]
+      test: ["CMD-SHELL", "/src/healthcheck-web.sh"]
       interval: 30s
-      timeout: 10s
+      start_interval: 2s
+      start_period: 60s
+      timeout: 5s
       retries: 3
-      start_period: 40s
     init: true
     ports:
       - "8000:8000"
