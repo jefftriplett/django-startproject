@@ -12,7 +12,7 @@ dependencies = [
     "django-prodserver[gunicorn]",
     "django-q2",
     "django-tailwind-cli",
-    "django<6.0",
+    "django<6.1",
     "environs[django]",
     "psycopg[binary]",
     "whitenoise",
