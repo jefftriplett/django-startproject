@@ -11,6 +11,10 @@ urlpatterns = [
     path(settings.ADMIN_URL, admin.site.urls),
     path(
         "health/",
+        # We only enable the Database check here. django-health-check 4.x also
+        # ships Cache, DNS, Mail, and Storage checks, which we intentionally leave
+        # off. The Django-Q2 worker is health-checked separately by
+        # healthcheck-worker.sh (`manage qinfo`), not via a health_check backend.
         HealthCheckView.as_view(
             checks=[
                 "health_check.Database",
