@@ -62,6 +62,10 @@ build *ARGS:
         --rm \
         db /bin/bash
 
+# Crawl the site for broken links (excludes /django-admin/)
+@crawl *ARGS:
+    just manage crawl --exclude '^/django-admin/' {{ ARGS }}
+
 # Stop and remove containers, networks
 @down *ARGS:
     docker compose down {{ ARGS }}

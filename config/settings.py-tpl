@@ -48,6 +48,7 @@ INSTALLED_APPS = [
 
 INSTALLED_APPS += [
     "django_browser_reload",
+    "django_crawl",
     "django_prodserver",
     "django_q",
     "django_tailwind_cli",
