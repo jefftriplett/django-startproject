@@ -10,12 +10,12 @@
 > [!NOTE]
 > **Modern Django Development Stack** 🚀
 >
-> This is a production-ready Django project template featuring the latest Python 3.13, Django 5.2, and modern tooling including **uv** for blazing-fast dependency management, **Docker Compose** for containerization, and **Justfile** for streamlined commands. Perfect for starting new projects or learning best practices with batteries included!
+> This is a production-ready Django project template featuring the latest Python 3.14, Django 6.0, and modern tooling including **uv** for blazing-fast dependency management, **Docker Compose** for containerization, and **Justfile** for streamlined commands. Perfect for starting new projects or learning best practices with batteries included!
 
 ## :triangular_flag_on_post: Core Features
 
-- Django 5.2
-- Python 3.13
+- Django 6.0
+- Python 3.14
 - Docker Compose (I prefer Orbstack)
 - Justfile recipes
 - Postgres auto updates
@@ -35,7 +35,7 @@
 - pre-commit (using prek)
   - Standard hooks (check-added-large-files, check-json, check-toml, check-yaml, etc.)
   - ruff (linting and formatting)
-  - pyupgrade (Python 3.13+)
+  - pyupgrade (Python 3.14+)
   - django-upgrade (Django 5.0+)
   - djhtml (Django template formatting)
   - djade (Django 5.2 compatibility)
