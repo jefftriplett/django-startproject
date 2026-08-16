@@ -1,31 +1,34 @@
-[project]
-name = "{{ project_name }}"
-version = "2026.1.1"
-description = "Add your description here"
-readme = "README.md"
-requires-python = ">=3.13"
-dependencies = [
-    "blessed",
-    "django-browser-reload",
-    "django-click",
-    "django-crawl",
-    "django-health-check>=4.0.0",
-    "django-prodserver[gunicorn]",
-    "django-q2",
-    "django-tailwind-cli",
-    "django<6.1",
-    "environs[django]",
-    "psycopg[binary]",
-    "whitenoise",
-]
-
 [dependency-groups]
 dev = [
-    "django-test-plus",
-    "model-bakery",
-    "pytest",
-    "pytest-django",
+  "django-test-plus",
+  "model-bakery",
+  "pytest",
+  "pytest-django"
 ]
+
+[project]
+dependencies = [
+  "blessed",
+  "django-browser-reload",
+  "django-click",
+  "django-crawl",
+  "django-health-check>=4.0.0",
+  "django-prodserver[gunicorn]",
+  "django-q2",
+  "django-tailwind-cli",
+  "django<6.1",
+  "environs[django]",
+  "psycopg[binary]",
+  "whitenoise"
+]
+description = "Add your description here"
+name = "{{ project_name }}"
+readme = "README.md"
+requires-python = ">=3.13"
+version = "2026.1.1"
+
+[tool.black]
+target-version = ["py313"]
 
 [tool.bumpver]
 commit = true
@@ -35,27 +38,21 @@ push = false  # disabled for GitHub Actions
 tag = true
 version_pattern = "YYYY.MM.INC1"
 
-[tool.uv]
-package = false
-
 [tool.bumpver.file_patterns]
 "config/__init__.py" = [
-    '__version__ = "{version}"',
+  '__version__ = "{version}"'
 ]
 "pyproject.toml" = [
   'version = "{version}"'
 ]
 
-[tool.black]
-target-version = ["py313"]
-
 [tool.coverage.run]
 omit = [
-    "*/admin.py",
-    "*/manage.py",
-    "*/migrations/*",
-    "*/tests/*",
-    "conftest.py",
+  "*/admin.py",
+  "*/manage.py",
+  "*/migrations/*",
+  "*/tests/*",
+  "conftest.py"
 ]
 
 [tool.pytest.ini_options]
@@ -67,23 +64,23 @@ python_files = "test_*.py"
 [tool.ruff]
 # Exclude a variety of commonly ignored directories.
 exclude = [
-    ".bzr",
-    ".direnv",
-    ".eggs",
-    ".git",
-    ".github",
-    ".hg",
-    ".ruff_cache",
-    ".svn",
-    ".tox",
-    ".venv",
-    "__pypackages__",
-    "_build",
-    "build",
-    "dist",
-    "migrations",
-    "node_modules",
-    "static",
+  ".bzr",
+  ".direnv",
+  ".eggs",
+  ".git",
+  ".github",
+  ".hg",
+  ".ruff_cache",
+  ".svn",
+  ".tox",
+  ".venv",
+  "__pypackages__",
+  "_build",
+  "build",
+  "dist",
+  "migrations",
+  "node_modules",
+  "static"
 ]
 # Same as Black.
 line-length = 120
@@ -94,8 +91,11 @@ target-version = "py313"
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 # Allow autofix for all enabled rules (when `--fix`) is provided.
 fixable = ["A", "B", "C", "D", "E", "F"]
-ignore = ["E501", "E741"]                # temporary
+ignore = ["E501", "E741"]  # temporary
 per-file-ignores = {}
 # Enable Pyflakes `E` and `F` codes by default.
 select = ["E", "F"]
 unfixable = []
+
+[tool.uv]
+package = false

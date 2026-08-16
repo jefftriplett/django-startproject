@@ -80,3 +80,11 @@ repos:
         entry: rustywind
         args: [--write]
         types_or: [html]
+-   repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
+    rev: v2.14.0
+    hooks:
+    -   id: pretty-format-toml
+        args: [--autofix]
+        # uv owns uv.lock's formatting and rewrites it on every resolve, so the
+        # two formatters just undo each other and churn thousands of lines.
+        exclude: ^uv\.lock$
