@@ -20,14 +20,17 @@ x-common-settings: &common-settings
     - django-tailwind-cli-data:/src/.django_tailwind_cli
 
 services:
-
   db:
+    image: "pgautoupgrade/pgautoupgrade:17-alpine"
+    volumes:
+      - .:/src:cache
+      - postgres-data:/var/lib/postgresql/data/
     environment:
       - "POSTGRES_HOST_AUTH_METHOD=trust"
     healthcheck:
       # CMD-SHELL takes a single command string; passing args as extra list
       # items silently drops them. Use the full command as one string.
-      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres -q"]
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d postgres -q" ]
       # `start_interval` (Docker 25+) lets us poll aggressively during boot
       # and relax once the container is healthy.
       interval: 30s
@@ -35,55 +38,44 @@ services:
       start_period: 20s
       timeout: 3s
       retries: 5
-    image: "pgautoupgrade/pgautoupgrade:17-alpine"
-    init: true
     user: postgres
-    volumes:
-      - .:/src:cache
-      - postgres-data:/var/lib/postgresql/data/
-
-  worker:
-    <<: *common-settings
-    command: ["/src/start-worker.sh"]
-    healthcheck:
-      test: ["CMD-SHELL", "/src/healthcheck-worker.sh"]
-      interval: 30s
-      start_interval: 3s
-      start_period: 60s
-      timeout: 10s
-      retries: 3
     init: true
 
   tailwind:
+    command: [ "/src/start-tailwind.sh" ]
     <<: *common-settings
-    command: ["/src/start-tailwind.sh"]
     init: true
 
   utility:
+    command: [ "uv", "run", "--no-sync", "-m", "manage", "--version" ]
+    entrypoint: [ "/src/compose-entrypoint.sh" ]
     <<: *common-settings
-    command: [
-      "uv",
-      "run",
-      "--no-sync",
-      "-m",
-      "manage",
-      "--version"
-    ]
-    entrypoint: ["/src/compose-entrypoint.sh"]
 
   web:
-    <<: *common-settings
-    command: ["/src/start-dev.sh"]
+    ports:
+      - '8000:8000'
+    command: [ "/src/start-dev.sh" ]
     healthcheck:
-      test: ["CMD-SHELL", "/src/healthcheck-web.sh"]
+      test: [ "CMD-SHELL", "/src/healthcheck-web.sh" ]
       interval: 30s
       start_interval: 2s
       start_period: 60s
       timeout: 5s
       retries: 3
+    <<: *common-settings
     init: true
-    ports:
-      - "8000:8000"
+
+  worker:
+    command: [ "/src/start-worker.sh" ]
+    healthcheck:
+      test: [ "CMD-SHELL", "/src/healthcheck-worker.sh" ]
+      interval: 30s
+      start_interval: 3s
+      start_period: 60s
+      timeout: 10s
+      retries: 3
+    <<: *common-settings
+    init: true
 
 volumes:
   django-tailwind-cli-data:
