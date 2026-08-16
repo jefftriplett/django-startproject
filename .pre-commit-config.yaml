@@ -37,6 +37,12 @@ repos:
     -   id: ruff
         args: [--fix, --exit-non-zero-on-fix]
     -   id: ruff-format
+-   repo: https://github.com/docker-compose-linter/pre-commit-dclint
+    rev: v3.1.0
+    hooks:
+    -   id: dclint
+        files: ^(docker-)?compose\.ya?ml$
+        args: [--fix]
 -   repo: https://github.com/asottile/pyupgrade
     rev: v3.21.2
     hooks:
