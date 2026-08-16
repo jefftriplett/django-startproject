@@ -33,13 +33,17 @@
 ## :shirt: Linting/auto-formatting
 
 - pre-commit (using prek)
-  - Standard hooks (check-added-large-files, check-json, check-toml, check-yaml, etc.)
+  - check-pre-commit-ci-config (validate the pre-commit.ci config)
+  - Standard hooks (check-added-large-files, check-case-conflict, check-json, check-merge-conflict, check-symlinks, check-toml, check-yaml, end-of-file-fixer, trailing-whitespace)
+  - uv-lock (keep uv.lock in sync with pyproject.toml)
   - ruff (linting and formatting)
+  - dclint (Docker Compose linting)
   - pyupgrade (Python 3.14+)
   - django-upgrade (Django 5.0+)
-  - djhtml (Django template formatting)
-  - djade (Django 5.2 compatibility)
-  - blacken-docs (format code in documentation)
+  - djade (Django template formatting; target version auto-detected from pyproject.toml)
+  - djhtml / djcss / djjs (Django template, CSS, and JS formatting)
+  - rustywind (sort Tailwind CSS classes)
+  - pretty-format-toml (format TOML files)
 
 ### :green_heart: CI
 
