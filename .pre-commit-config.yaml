@@ -31,6 +31,13 @@ repos:
     rev: 0.9.17
     hooks:
     -   id: uv-lock
+        # In this repo pyproject.toml still holds the unrendered
+        # `name = "{{ project_name }}"` placeholder, which uv cannot parse, so
+        # the hook fails here even though it is fine in generated projects.
+        # Note the cost: uv-lock now fires on uv.lock only, so a dependency
+        # edit in pyproject.toml no longer re-locks by itself. Run `just lock`
+        # after changing dependencies, or drop this exclude in your project.
+        exclude: ^pyproject\.toml$
 -   repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.16.0
     hooks:
