@@ -1,14 +1,21 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.http import JsonResponse
 from django.urls import include
 from django.urls import path
 
+from config import __version__
 from health_check.views import HealthCheckView
+
+
+def version(request):
+    return JsonResponse({"version": f"{__version__}"})
 
 
 urlpatterns = [
     path(settings.ADMIN_URL, admin.site.urls),
+    path("apis/version/", version, name="version"),
     path(
         "health/",
         # We only enable the Database check here. django-health-check 4.x also
