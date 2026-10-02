@@ -1,2 +1,2 @@
 #!/bin/sh
-uv run -m manage qcluster --skip-checks
+uv run --no-sync -m manage qcluster --skip-checks
