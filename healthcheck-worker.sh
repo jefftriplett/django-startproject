@@ -2,7 +2,7 @@
 set -e
 
 # Check if the Q cluster is alive
-output=$(uv run -m manage qinfo --skip-checks 2>&1) || {
+output=$(uv run --no-sync -m manage qinfo --skip-checks 2>&1) || {
     echo "Failed to run qinfo:"
     echo "$output"
     exit 1
