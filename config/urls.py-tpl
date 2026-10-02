@@ -6,6 +6,7 @@ from django.urls import include
 from django.urls import path
 
 from config import __version__
+from config.views import VersionView
 from health_check.views import HealthCheckView
 
 
@@ -16,6 +17,7 @@ def version(request):
 urlpatterns = [
     path(settings.ADMIN_URL, admin.site.urls),
     path("apis/version/", version, name="version"),
+    path("version.txt", VersionView.as_view()),
     path(
         "health/",
         # We only enable the Database check here. django-health-check 4.x also
