@@ -65,7 +65,7 @@ CMD ["/src/start-web.sh"]
 # Worker stage
 FROM release AS worker
 
-HEALTHCHECK --interval=30s --start-interval=3s --start-period=60s --timeout=10s --retries=3 \
+HEALTHCHECK --interval=30s --start-interval=3s --start-period=15s --timeout=10s --retries=3 \
     CMD ["/src/healthcheck-worker.sh"]
 
 CMD ["/src/start-worker.sh"]
@@ -73,7 +73,7 @@ CMD ["/src/start-worker.sh"]
 # Web stage (default)
 FROM release AS web
 
-HEALTHCHECK --interval=30s --start-interval=2s --start-period=60s --timeout=5s --retries=3 \
+HEALTHCHECK --interval=30s --start-interval=2s --start-period=15s --timeout=5s --retries=3 \
     CMD ["/src/healthcheck-web.sh"]
 
 CMD ["/src/start-web.sh"]
