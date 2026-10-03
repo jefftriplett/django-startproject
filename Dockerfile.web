@@ -59,7 +59,7 @@ RUN DATABASE_URL=sqlite://:memory: SECRET_KEY=build-key uv run --no-sync -m mana
 RUN DATABASE_URL=sqlite://:memory: SECRET_KEY=build-key uv run --no-sync -m manage collectstatic --noinput
 
 
-HEALTHCHECK --interval=30s --start-interval=2s --start-period=60s --timeout=5s --retries=3 \
+HEALTHCHECK --interval=30s --start-interval=2s --start-period=15s --timeout=5s --retries=3 \
     CMD ["/src/healthcheck-web.sh"]
 
 CMD ["/src/start-web.sh"]
