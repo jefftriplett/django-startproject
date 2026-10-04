@@ -20,8 +20,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
     apt-get update && apt-get install -y --no-install-recommends \
     curl \
-    procps \
-    wget
+    procps
 
 # Install Python dependencies using uv
 # Mount only the necessary files (dependency definitions)
