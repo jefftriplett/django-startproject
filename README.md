@@ -28,7 +28,16 @@
 - django-prodserver[gunicorn]
 - environs[django]
 - psycopg[binary]
+- sentry-sdk
 - whitenoise
+
+## :warning: Error reporting (Sentry)
+
+Sentry is off by default. Set these environment variables (e.g. in `.env`) to enable it:
+
+- `SENTRY_DSN`: your Sentry DSN. Sentry is only initialized when this is set. (default: unset)
+- `SENTRY_ENVIRONMENT`: the environment name reported to Sentry. (default: `production`)
+- `SENTRY_TRACES_SAMPLE_RATE`: fraction of transactions to trace, `0.0`-`1.0`. (default: `0.1`)
 
 ## :shirt: Linting/auto-formatting
 

@@ -19,6 +19,7 @@ dependencies = [
   "django<6.1",
   "environs[django]",
   "psycopg[binary]",
+  "sentry-sdk",
   "whitenoise"
 ]
 description = "Add your description here"
