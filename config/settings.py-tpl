@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/
 """
 
+import sentry_sdk
+
 from environs import env
 from pathlib import Path
 
@@ -164,6 +166,46 @@ CACHES = {"default": env.dj_cache_url("CACHE_URL", default="locmem://")}
 ADMIN_URL = env.str("ADMIN_URL", default="admin/")
 
 SITE_ID = 1
+
+# Logging
+# Send django.request / django.security warnings to the console so 4xx/5xx
+# errors and security events show up in production logs.
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+        },
+    },
+    "loggers": {
+        "django.request": {
+            "handlers": ["console"],
+            "level": "WARNING",
+            "propagate": False,
+        },
+        "django.security": {
+            "handlers": ["console"],
+            "level": "WARNING",
+            "propagate": False,
+        },
+    },
+}
+
+# Sentry error reporting
+# Disabled unless SENTRY_DSN is set. PII (user IPs, cookies, user data) is not
+# sent unless SENTRY_SEND_DEFAULT_PII is explicitly enabled.
+
+SENTRY_DSN = env.str("SENTRY_DSN", default="")
+
+if SENTRY_DSN:
+    sentry_sdk.init(
+        dsn=SENTRY_DSN,
+        environment=env.str("SENTRY_ENVIRONMENT", default="production"),
+        traces_sample_rate=env.float("SENTRY_TRACES_SAMPLE_RATE", default=0.1),
+        send_default_pii=env.bool("SENTRY_SEND_DEFAULT_PII", default=False),
+    )
 
 # Tailwind CSS settings
 
