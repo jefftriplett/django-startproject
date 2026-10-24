@@ -38,6 +38,7 @@ Sentry is off by default. Set these environment variables (e.g. in `.env`) to en
 - `SENTRY_DSN`: your Sentry DSN. Sentry is only initialized when this is set. (default: unset)
 - `SENTRY_ENVIRONMENT`: the environment name reported to Sentry. (default: `production`)
 - `SENTRY_TRACES_SAMPLE_RATE`: fraction of transactions to trace, `0.0`-`1.0`. (default: `0.1`)
+- `SENTRY_SEND_DEFAULT_PII`: send personally identifiable data (user IPs, cookies, user IDs, emails) to Sentry. Off by default; enable only if your privacy policy allows it. (default: `false`)
 
 ## :shirt: Linting/auto-formatting
 
