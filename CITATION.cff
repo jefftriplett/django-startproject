@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+title: django-startproject
+message: "If you use this software, please cite it as below."
+type: software
+authors:
+  - family-names: Triplett
+    given-names: Jeff
+url: "https://github.com/jefftriplett/django-startproject"
+repository-code: "https://github.com/jefftriplett/django-startproject"
+license: BSD-3-Clause
